@@ -165,6 +165,7 @@ MonoBehaviour:
   placeSound: {fileID: 8300000, guid: 014f1c29602635d47b25ed95f164e3a6, type: 3}
   badPlaceSound: {fileID: 8300000, guid: 05e25dfc59eb2854bbdec2ca2ef59c28, type: 3}
   held: 0
+  tileType: 5
 --- !u!212 &212625059545255960
 SpriteRenderer:
   m_ObjectHideFlags: 1

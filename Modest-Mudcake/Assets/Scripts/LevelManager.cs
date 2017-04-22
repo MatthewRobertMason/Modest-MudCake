@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Pair = System.Collections.Generic.KeyValuePair<int, int>;
 
-public class LevelManager : MonoBehaviour 
+public class LevelManager : MonoBehaviour
 {
     /*
      * Initial Level Conditions
@@ -38,10 +38,8 @@ public class LevelManager : MonoBehaviour
                                         {TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty},
                                         {TileType.Null,TileType.Empty,TileType.Empty,TileType.Null}
                                     };
-    private List<TileType> testTiles = new List<TileType> { TileType.Mountain, TileType.Mountain, TileType.Grassland, TileType.Grassland, 
-                                                            TileType.Desert, TileType.Desert, TileType.River, TileType.River, 
-                                                            TileType.Hills, TileType.Hills, TileType.Town, TileType.Town, 
-                                                            TileType.Water, TileType.Water, TileType.Swamp, TileType.Swamp, 
+    private List<TileType> testTiles = new List<TileType> { TileType.Mountain, TileType.Grassland, TileType.Desert, TileType.River,
+                                                            TileType.Hills, TileType.Town, TileType.Water, TileType.Swamp,
                                                           };
 
     public GameObject socketObject = null;
@@ -68,25 +66,25 @@ public class LevelManager : MonoBehaviour
         Water,
         Swamp
     }
-    /*
-    public void LevelManagerFactory(TileType[,] level, List<TileType> availableTiles) 
+
+    public bool initializedLevel = false;
+
+    public void LevelManagerFactory(TileType[,] level, List<TileType> availableTiles)
     {
-        _level = testLevel;
         if (level != null)
             _level = level;
 
-        _availableTiles = testTiles;
         if (availableTiles != null)
             _availableTiles = availableTiles;
-    }
-    */
-    void Awake()
-    {
-        
+
+        initializedLevel = true;
     }
 
-	void Start () 
+	void Start ()
     {
+        if (!initializedLevel)
+            LevelManagerFactory(testLevel, testTiles);
+
 		/*
          * Build the board
          * Create the tiles
@@ -94,7 +92,7 @@ public class LevelManager : MonoBehaviour
          * Add tiles to hand
          */
         gameBoardWidth = _level.GetLength(1);
-        gameBoardHeight = _level.Length;
+        gameBoardHeight = _level.GetLength(0);
 
         officialBoard = new GameObject[gameBoardHeight, gameBoardWidth];
 
@@ -106,10 +104,9 @@ public class LevelManager : MonoBehaviour
 
                 if (_level[y,x] != TileType.Null)
                 {
-					currentSocket = Instantiate(socketObject);
-                    //socketObjects[y, x] = currentSocket;
+                    currentSocket = Instantiate(socketObject, gameBoardObject.transform);
 
-                    currentSocket.transform.position = gameBoardObject.transform.position + 
+                    currentSocket.transform.position = gameBoardObject.transform.position +
                         new Vector3(x - ((float)gameBoardWidth / 2.0f), y - ((float)gameBoardHeight / 2.0f), 0);
 
 					GameObject currentTile = null;
@@ -142,6 +139,13 @@ public class LevelManager : MonoBehaviour
                             break;
                     }
 
+                    socketContext sc = currentSocket.GetComponent<socketContext>();
+                    sc.x = x;
+                    sc.y = y;
+
+                    if ((_level[y, x] != TileType.Empty) && (_level[y, x] != TileType.Null))
+                        currentTile = createTile(_level[y, x], gameBoardObject);
+
                     if (currentTile != null)
                     {
                         currentTile.transform.position = currentSocket.transform.position;
@@ -154,6 +158,29 @@ public class LevelManager : MonoBehaviour
 
                 officialBoard[y, x] = currentSocket;
             }
+        }
+
+        // Add tiles to the bench
+        float benchStart = -5.0f;
+        float spacing = 1.0f;
+
+        if (_availableTiles.Count < tileBenchLength)
+        {
+            benchStart = ((float)_availableTiles.Count / 2.0f);
+            spacing = 1.0f;
+        }
+        else if (_availableTiles.Count > 0)
+        {
+            benchStart = ((float)tileBenchLength/2.0f);
+            spacing = (float)tileBenchLength / (float)_availableTiles.Count;
+        }
+
+        int i = 0;
+        foreach (TileType t in _availableTiles)
+        {
+            GameObject temp = createTile(t, gameBoardObject);
+            temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (i*spacing), 0, 0);
+            i ++;
         }
 	}
 
@@ -170,9 +197,47 @@ public class LevelManager : MonoBehaviour
 		// TODO
 	}
 
-    void Update() 
+    private GameObject createTile(TileType t, GameObject board)
     {
-		
+        GameObject currentTile = null;
+
+        switch (t)
+        {
+            case TileType.Mountain:
+                currentTile = Instantiate(mountain);
+                break;
+            case TileType.Grassland:
+                currentTile = Instantiate(grassland);
+                break;
+            case TileType.Desert:
+                currentTile = Instantiate(desert);
+                break;
+            case TileType.River:
+                currentTile = Instantiate(river);
+                break;
+            case TileType.Hills:
+                currentTile = Instantiate(hills);
+                break;
+            case TileType.Town:
+                currentTile = Instantiate(town);
+                break;
+            case TileType.Water:
+                currentTile = Instantiate(water);
+                break;
+            case TileType.Swamp:
+                currentTile = Instantiate(swamp);
+                break;
+        }
+
+        if (currentTile != null)
+            currentTile.GetComponent<dragableTile>().board = board;
+
+        return currentTile;
+    }
+
+    void Update()
+    {
+
 	}
 
 	TileType transition(TileType current, TileType catalyst){
@@ -194,7 +259,7 @@ public class LevelManager : MonoBehaviour
 				return TileType.River;
 			case TileType.Town:
 				return TileType.Town;
-			case TileType.Swamp: 
+			case TileType.Swamp:
 				return TileType.Swamp;
 			}
 			break;
@@ -318,10 +383,10 @@ public class LevelManager : MonoBehaviour
 					TileType newType = transition (currentType, getTileType(neighbour.Key, neighbour.Value));
 					if (newType != currentType) {
 						couldChange.Add (newType);
-					}					
+					}
 				}
 			}
-				
+
 			// There is at least one thing to change into
 			if (couldChange.Count > 0) {
 				// The current tile is changing, make sure neigbours that are not already
@@ -334,12 +399,10 @@ public class LevelManager : MonoBehaviour
 					}
 				}
 
-				// 
+				//
 				TileType type = chooseChange(currentType, couldChange);
 				setTileType(current.Key, current.Value, type);
 			}
 		}
 	}
 }
-
-
