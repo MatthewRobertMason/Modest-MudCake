@@ -8,6 +8,7 @@ public class dragableTile : MonoBehaviour
     public float snapDistance = 1.0f;
 
     public GameObject board = null;
+	public LevelManager level = null;
 
     private AudioSource audioSource = null;
     public AudioClip placeSound = null;
@@ -52,6 +53,11 @@ public class dragableTile : MonoBehaviour
                     this.transform.position = nearest.transform.position;
                     if (placeSound != null)
                         audioSource.PlayOneShot(placeSound);
+
+					socketContext sc = nearest.GetComponent<socketContext> ();
+					int x = sc.x;
+					int y = sc.y;
+					level.MoveTile(x, y);
                 }
                 else
                 {
