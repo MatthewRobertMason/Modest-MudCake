@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Pair = System.Collections.Generic.KeyValuePair<int, int>;
+
 public class LevelManager : MonoBehaviour 
 {
     /*
@@ -19,7 +21,7 @@ public class LevelManager : MonoBehaviour
     public GameObject tileBench = null;
     public float tileBenchLength = 8;
 
-    [Range(1,5)]
+    [Range(1, 5)]
     public int gameBoardWidth = 4;
     [Range(1, 5)]
     public int gameBoardHeight = 4;
@@ -96,20 +98,21 @@ public class LevelManager : MonoBehaviour
 
         officialBoard = new GameObject[gameBoardHeight, gameBoardWidth];
 
-        GameObject currentSocket = null;
-        GameObject currentTile = null;
-
         for (int y = 0; y < gameBoardHeight; y++)
         {
             for (int x = 0; x < gameBoardWidth; x++)
             {
+				GameObject currentSocket = null;
+
                 if (_level[y,x] != TileType.Null)
                 {
-                    currentSocket = Instantiate(socketObject);
+					currentSocket = Instantiate(socketObject);
                     //socketObjects[y, x] = currentSocket;
 
                     currentSocket.transform.position = gameBoardObject.transform.position + 
                         new Vector3(x - ((float)gameBoardWidth / 2.0f), y - ((float)gameBoardHeight / 2.0f), 0);
+
+					GameObject currentTile = null;
 
                     switch(_level[y,x])
                     {
@@ -145,6 +148,7 @@ public class LevelManager : MonoBehaviour
                         currentSocket.GetComponent<socketContext>().currentTile = currentTile;
 
                         currentTile.GetComponent<dragableTile>().board = gameBoardObject;
+						currentTile.GetComponent<dragableTile>().level = this;
                     }
                 }
 
@@ -153,13 +157,18 @@ public class LevelManager : MonoBehaviour
         }
 	}
 
-    private TileType getTileType(int x, int y)
-    {
-        GameObject tile = officialBoard[y, x].GetComponent<socketContext>().currentTile;
-        if (tile != null)
-            return tile.GetComponent<dragableTile>().tileType;
-        return TileType.Empty;
-    }
+	private TileType getTileType(int x, int y)
+	{
+		GameObject tile = officialBoard[y, x].GetComponent<socketContext>().currentTile;
+		if (tile != null)
+			return tile.GetComponent<dragableTile>().tileType;
+		return TileType.Null;
+	}
+
+	private void setTileType(int x, int y, TileType type)
+	{
+		// TODO
+	}
 
     void Update() 
     {
@@ -168,78 +177,79 @@ public class LevelManager : MonoBehaviour
 
 	TileType transition(TileType current, TileType catalyst){
 		switch (current) {
-		case TileType::Mountian:
-			if (catalyst == Water)
-				return Hills;
+		case TileType.Mountain:
+			if (catalyst == TileType.Water)
+				return TileType.Hills;
 			break;
 
-		case TileType::Grassland:
+		case TileType.Grassland:
 			switch (catalyst) {
-			case Mountain:
-				return River;
-			case Desert:
-				return Desert;
-			case River:
-				return Town;
-			case Hills:
-				return River;
-			case Town:
-				return Town;
-			case Swamp: return Swamp;
+			case TileType.Mountain:
+				return TileType.River;
+			case TileType.Desert:
+				return TileType.Desert;
+			case TileType.River:
+				return TileType.Town;
+			case TileType.Hills:
+				return TileType.River;
+			case TileType.Town:
+				return TileType.Town;
+			case TileType.Swamp: 
+				return TileType.Swamp;
 			}
 			break;
 
-		case TileType::Desert:
-			if (catalyst == River)
-				return Grassland;
-			if (catalyst == Swamp)
-				return Grassland;
-			if (catalyst == Mountain)
-				return Hills;
+		case TileType.Desert:
+			if (catalyst == TileType.River)
+				return TileType.Grassland;
+			if (catalyst == TileType.Swamp)
+				return TileType.Grassland;
+			if (catalyst == TileType.Mountain)
+				return TileType.Hills;
 			break;
 
-		case TileType::River:
-			if (catalyst == River)
-				return Swamp;
+		case TileType.River:
+			if (catalyst == TileType.River)
+				return TileType.Swamp;
 			break;
 
-		case Hills:
+		case TileType.Hills:
 			switch (catalyst) {
-			case Mountain:
-				return Mountain;
-			case River:
-				return Grassland;
-			case Water:
-				return River;
+			case TileType.Mountain:
+				return TileType.Mountain;
+			case TileType.River:
+				return TileType.Grassland;
+			case TileType.Water:
+				return TileType.River;
 			}
 			break;
 
-		case Town:
+		case TileType.Town:
 			switch (catalyst) {
-			case Desert:
-				return Desert;
-			case Swamp:
-				return Swamp;
+			case TileType.Desert:
+				return TileType.Desert;
+			case TileType.Swamp:
+				return TileType.Swamp;
 			}
 			break;
 
-		case Water:
+		case TileType.Water:
 			switch (catalyst) {
-			case Desert:
-				return Swamp;
+			case TileType.Desert:
+				return TileType.Swamp;
 			}
 			break;
 
-		case Swamp:
+		case TileType.Swamp:
 			switch (catalyst) {
-			case Desert:
-				return Grassland;
-			case River:
-				return River;
-			case Town:
-				return Grassland;
-			case Water:
-				return Water;
+			case TileType.Desert:
+				return TileType.Grassland;
+			case TileType.River:
+				return TileType.River;
+			case TileType.Town:
+				return TileType.Grassland;
+			case TileType.Water:
+				return TileType.Water;
 			}
 			break;
 		}
@@ -247,35 +257,65 @@ public class LevelManager : MonoBehaviour
 		return current;
 	}
 
-	TileType chooseChange
+	TileType chooseChange(TileType old, HashSet<TileType> newValues){
+		// TODO for determinism each possible set of transitions for a tile should have a priority
+		TileType[] data = new TileType[newValues.Count];
+		newValues.CopyTo (data);
+		return data [0];
+	}
 
-	void UpdateBoard(Object changed, int newPosition){
+	List<Pair> getNeighbours(Pair center){
+		Pair[] offsets = {
+			new Pair(1, 0),
+			new Pair(-1, 0),
+			new Pair(0, 1),
+			new Pair(0, -1),
+		};
+
+		List<Pair> output = new List<Pair>();
+
+		foreach(Pair offset	in offsets){
+			int x = center.Key + offset.Key;
+			int y = center.Value + offset.Value;
+			if (0 < x || x >= gameBoardWidth || y < 0 || y >= gameBoardHeight)
+				continue;
+			if (getTileType (x, y) != TileType.Null)
+				output.Add (new Pair(x, y));
+		}
+		return output;
+	}
+
+	public void MoveTile(int x, int y){
+		Pair changed = new Pair(x, y);
+
 		//
-		int oldPosition = positionOf(changed);
-
+		// Pair oldPosition = positionOf(tile);
 		//
-		if(oldPosition == newPosition) return;
+		//
+		// if(oldPosition == newPosition) return;
+		//
 
-		HashSet<Object> updated, finished;
+		HashSet<Pair> updated = new HashSet<Pair>();
+		HashSet<Pair> finished = new HashSet<Pair>();
 		updated.Add (changed);
 
-		fixedObjects.copyTo (finished);
+		// fixedObjects.copyTo (finished);
 		finished.Add (changed);
 
-		Queue<Object> front;
+		Queue<Pair> front = new Queue<Pair>();
 		front.Enqueue(changed);
 
 		//
-		while(front.Count){
+		while(front.Count > 0){
 			// Get the next tile to process
-			Object current = front.Dequeue();
-			currentType = tileType (current);
+			Pair current = front.Dequeue();
+			TileType currentType = getTileType(current.Key, current.Value);
 
 			// Check if any of the changed tiles are adjacent to this one have changed
-			HashSet<Object> couldChange;
-			foreach (Object neighbour in getNeigbours(current)) {
-				if(updated.Contains(neigbour)){
-					newType = transition (tileType (current), tileType(neighbour));
+			HashSet<TileType> couldChange = new HashSet<TileType>();
+			foreach (Pair neighbour in getNeighbours(current)) {
+				if(updated.Contains(neighbour)){
+					TileType newType = transition (currentType, getTileType(neighbour.Key, neighbour.Value));
 					if (newType != currentType) {
 						couldChange.Add (newType);
 					}					
@@ -283,19 +323,20 @@ public class LevelManager : MonoBehaviour
 			}
 				
 			// There is at least one thing to change into
-			if (couldChange.Count) {
+			if (couldChange.Count > 0) {
 				// The current tile is changing, make sure neigbours that are not already
 				// changed or forbidden to change are updated
 				updated.Add (current);
 				finished.Add (current);
-				foreach (Object neighbour in getNeigbours(current)) {
+				foreach (Pair neighbour in getNeighbours(current)) {
 					if (!finished.Contains (neighbour)) {
 						front.Enqueue (neighbour);
 					}
 				}
 
 				// 
-				chooseChange(currentType, couldChange);
+				TileType type = chooseChange(currentType, couldChange);
+				setTileType(current.Key, current.Value, type);
 			}
 		}
 	}
