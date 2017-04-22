@@ -111,34 +111,6 @@ public class LevelManager : MonoBehaviour
 
 					GameObject currentTile = null;
 
-                    switch(_level[y,x])
-                    {
-                        case TileType.Mountain:
-                            currentTile = Instantiate(mountain);
-                            break;
-                        case TileType.Grassland:
-                            currentTile = Instantiate(grassland);
-                            break;
-                        case TileType.Desert:
-                            currentTile = Instantiate(desert);
-                            break;
-                        case TileType.River:
-                            currentTile = Instantiate(river);
-                            break;
-                        case TileType.Hills:
-                            currentTile = Instantiate(hills);
-                            break;
-                        case TileType.Town:
-                            currentTile = Instantiate(town);
-                            break;
-                        case TileType.Water:
-                            currentTile = Instantiate(water);
-                            break;
-                        case TileType.Swamp:
-                            currentTile = Instantiate(swamp);
-                            break;
-                    }
-
                     socketContext sc = currentSocket.GetComponent<socketContext>();
                     sc.x = x;
                     sc.y = y;
@@ -150,9 +122,6 @@ public class LevelManager : MonoBehaviour
                     {
                         currentTile.transform.position = currentSocket.transform.position;
                         currentSocket.GetComponent<socketContext>().currentTile = currentTile;
-
-                        currentTile.GetComponent<dragableTile>().board = gameBoardObject;
-						currentTile.GetComponent<dragableTile>().level = this;
                     }
                 }
 
@@ -231,7 +200,10 @@ public class LevelManager : MonoBehaviour
         }
 
         if (currentTile != null)
+        {
             currentTile.GetComponent<dragableTile>().board = board;
+            currentTile.GetComponent<dragableTile>().level = this;
+        }
 
         return currentTile;
     }
