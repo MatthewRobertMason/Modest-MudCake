@@ -5,7 +5,8 @@ using UnityEngine;
 public class socketContext : MonoBehaviour 
 {
     public GameObject currentTile = null;
-
+    public int x;
+    public int y;
 
 	void Start () 
     {
@@ -13,6 +14,5 @@ public class socketContext : MonoBehaviour
 	
 	void Update () 
     {
-		
 	}
 }

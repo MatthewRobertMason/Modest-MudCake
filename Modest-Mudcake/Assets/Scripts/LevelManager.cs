@@ -36,10 +36,8 @@ public class LevelManager : MonoBehaviour
                                         {TileType.Empty,TileType.Empty,TileType.Empty,TileType.Empty},
                                         {TileType.Null,TileType.Empty,TileType.Empty,TileType.Null}
                                     };
-    private List<TileType> testTiles = new List<TileType> { TileType.Mountain, TileType.Mountain, TileType.Grassland, TileType.Grassland, 
-                                                            TileType.Desert, TileType.Desert, TileType.River, TileType.River, 
-                                                            TileType.Hills, TileType.Hills, TileType.Town, TileType.Town, 
-                                                            TileType.Water, TileType.Water, TileType.Swamp, TileType.Swamp, 
+    private List<TileType> testTiles = new List<TileType> { TileType.Mountain, TileType.Grassland, TileType.Desert, TileType.River, 
+                                                            TileType.Hills, TileType.Town, TileType.Water, TileType.Swamp, 
                                                           };
 
     public GameObject socketObject = null;
@@ -66,25 +64,25 @@ public class LevelManager : MonoBehaviour
         Water,
         Swamp
     }
-    /*
+
+    public bool initializedLevel = false;
+
     public void LevelManagerFactory(TileType[,] level, List<TileType> availableTiles) 
     {
-        _level = testLevel;
         if (level != null)
             _level = level;
 
-        _availableTiles = testTiles;
         if (availableTiles != null)
             _availableTiles = availableTiles;
-    }
-    */
-    void Awake()
-    {
-        
+
+        initializedLevel = true;
     }
 
 	void Start () 
     {
+        if (!initializedLevel)
+            LevelManagerFactory(testLevel, testTiles);
+
 		/*
          * Build the board
          * Create the tiles
@@ -92,11 +90,12 @@ public class LevelManager : MonoBehaviour
          * Add tiles to hand
          */
         gameBoardWidth = _level.GetLength(1);
-        gameBoardHeight = _level.Length;
+        gameBoardHeight = _level.GetLength(0);
 
         officialBoard = new GameObject[gameBoardHeight, gameBoardWidth];
 
         GameObject currentSocket = null;
+        socketContext sc = null;
         GameObject currentTile = null;
 
         for (int y = 0; y < gameBoardHeight; y++)
@@ -105,40 +104,18 @@ public class LevelManager : MonoBehaviour
             {
                 if (_level[y,x] != TileType.Null)
                 {
-                    currentSocket = Instantiate(socketObject);
-                    //socketObjects[y, x] = currentSocket;
+                    currentSocket = Instantiate(socketObject, gameBoardObject.transform);
 
                     currentSocket.transform.position = gameBoardObject.transform.position + 
                         new Vector3(x - ((float)gameBoardWidth / 2.0f), y - ((float)gameBoardHeight / 2.0f), 0);
 
-                    switch(_level[y,x])
-                    {
-                        case TileType.Mountain:
-                            currentTile = Instantiate(mountain);
-                            break;
-                        case TileType.Grassland:
-                            currentTile = Instantiate(grassland);
-                            break;
-                        case TileType.Desert:
-                            currentTile = Instantiate(desert);
-                            break;
-                        case TileType.River:
-                            currentTile = Instantiate(river);
-                            break;
-                        case TileType.Hills:
-                            currentTile = Instantiate(hills);
-                            break;
-                        case TileType.Town:
-                            currentTile = Instantiate(town);
-                            break;
-                        case TileType.Water:
-                            currentTile = Instantiate(water);
-                            break;
-                        case TileType.Swamp:
-                            currentTile = Instantiate(swamp);
-                            break;
-                    }
+                    sc = currentSocket.GetComponent<socketContext>();
+                    sc.x = x;
+                    sc.y = y;
 
+                    if ((_level[y, x] != TileType.Empty) && (_level[y, x] != TileType.Null))
+                        currentTile = createTile(_level[y, x], gameBoardObject);
+                    
                     if (currentTile != null)
                     {
                         currentTile.transform.position = currentSocket.transform.position;
@@ -151,6 +128,29 @@ public class LevelManager : MonoBehaviour
                 officialBoard[y, x] = currentSocket;
             }
         }
+        
+        // Add tiles to the bench
+        float benchStart = -5.0f;
+        float spacing = 1.0f;
+
+        if (_availableTiles.Count < tileBenchLength)
+        {
+            benchStart = ((float)_availableTiles.Count / 2.0f);
+            spacing = 1.0f;
+        }   
+        else if (_availableTiles.Count > 0)
+        {
+            benchStart = ((float)tileBenchLength/2.0f);
+            spacing = (float)tileBenchLength / (float)_availableTiles.Count;   
+        }
+
+        int i = 0;
+        foreach (TileType t in _availableTiles)
+        {
+            GameObject temp = createTile(t, gameBoardObject);
+            temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (i*spacing), 0, 0);
+            i ++;
+        }
 	}
 
     private TileType getTileType(int x, int y)
@@ -159,6 +159,44 @@ public class LevelManager : MonoBehaviour
         if (tile != null)
             return tile.GetComponent<dragableTile>().tileType;
         return TileType.Empty;
+    }
+
+    private GameObject createTile(TileType t, GameObject board)
+    {
+        GameObject currentTile = null;
+
+        switch (t)
+        {
+            case TileType.Mountain:
+                currentTile = Instantiate(mountain);
+                break;
+            case TileType.Grassland:
+                currentTile = Instantiate(grassland);
+                break;
+            case TileType.Desert:
+                currentTile = Instantiate(desert);
+                break;
+            case TileType.River:
+                currentTile = Instantiate(river);
+                break;
+            case TileType.Hills:
+                currentTile = Instantiate(hills);
+                break;
+            case TileType.Town:
+                currentTile = Instantiate(town);
+                break;
+            case TileType.Water:
+                currentTile = Instantiate(water);
+                break;
+            case TileType.Swamp:
+                currentTile = Instantiate(swamp);
+                break;
+        }
+
+        if (currentTile != null)
+            currentTile.GetComponent<dragableTile>().board = board;
+
+        return currentTile;
     }
 
     void Update() 

@@ -51,13 +51,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584d188e0e677b04b946c455fd4eec77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBoardObject: {fileID: 0}
+  tileBench: {fileID: 0}
+  tileBenchLength: 0
   gameBoardWidth: 4
   gameBoardHeight: 4
-  Mountain: {fileID: 1461966823329432, guid: ed9c6fec4c9df5247a30004a6f6f9c41, type: 2}
-  Grassland: {fileID: 1544977471500646, guid: 3a5ad05bf1c48ec4f9b761e185e4d4b8, type: 2}
-  Desert: {fileID: 1001007319171000, guid: 7cb3a5cfe00a7414ba12d7bfe7f62c2d, type: 2}
-  River: {fileID: 1283661253304926, guid: eccd4c86065f49e4283ca467e690ba21, type: 2}
-  Hills: {fileID: 1001007319171000, guid: 7cb3a5cfe00a7414ba12d7bfe7f62c2d, type: 2}
-  Town: {fileID: 1001007319171000, guid: 7cb3a5cfe00a7414ba12d7bfe7f62c2d, type: 2}
-  Water: {fileID: 1001007319171000, guid: 7cb3a5cfe00a7414ba12d7bfe7f62c2d, type: 2}
-  Swamp: {fileID: 1001007319171000, guid: 7cb3a5cfe00a7414ba12d7bfe7f62c2d, type: 2}
+  socketObject: {fileID: 1253376186693012, guid: e0e6345e60c39d149957cf8eaa13e069,
+    type: 2}
+  mountain: {fileID: 1461966823329432, guid: ed9c6fec4c9df5247a30004a6f6f9c41, type: 2}
+  grassland: {fileID: 1544977471500646, guid: 3a5ad05bf1c48ec4f9b761e185e4d4b8, type: 2}
+  desert: {fileID: 1001007319171000, guid: 7cb3a5cfe00a7414ba12d7bfe7f62c2d, type: 2}
+  river: {fileID: 1283661253304926, guid: eccd4c86065f49e4283ca467e690ba21, type: 2}
+  hills: {fileID: 1771213674356612, guid: 917f37b6d0bc17145b4d80bb237bea53, type: 2}
+  town: {fileID: 1142794310621288, guid: a57f6d48b9cbe2c4d9c45c7adbbbe623, type: 2}
+  water: {fileID: 1201905063030274, guid: d796c402d73461e4e85483d0d5915b02, type: 2}
+  swamp: {fileID: 1430141667477842, guid: 087e7f51ace981e479a6e990b0295b12, type: 2}
+  initializedLevel: 0
