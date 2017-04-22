@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Modest-Mudcake.unity
-  isLoaded: 1
-  isActive: 1
