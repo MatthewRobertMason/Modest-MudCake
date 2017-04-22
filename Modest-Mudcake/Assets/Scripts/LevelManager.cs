@@ -110,11 +110,9 @@ public class LevelManager : MonoBehaviour
                         new Vector3(x - ((float)gameBoardWidth / 2.0f), y - ((float)gameBoardHeight / 2.0f), 0);
 
 					GameObject currentTile = null;
-<<<<<<< HEAD
-=======
+
 					if ((_level[y, x] != TileType.Empty) && (_level[y, x] != TileType.Null))
 						currentTile = createTile(_level[y, x], gameBoardObject);
->>>>>>> 8c884566cc1b469ef50bf8a21b28e5f1df0c5d43
 
                     socketContext sc = currentSocket.GetComponent<socketContext>();
                     sc.x = x;
@@ -204,18 +202,11 @@ public class LevelManager : MonoBehaviour
                 break;
         }
 
-<<<<<<< HEAD
         if (currentTile != null)
         {
             currentTile.GetComponent<dragableTile>().board = board;
             currentTile.GetComponent<dragableTile>().level = this;
         }
-=======
-		if (currentTile != null) {
-			currentTile.GetComponent<dragableTile> ().board = board;
-			currentTile.GetComponent<dragableTile> ().level = this;
-		}
->>>>>>> 8c884566cc1b469ef50bf8a21b28e5f1df0c5d43
 
         return currentTile;
     }
