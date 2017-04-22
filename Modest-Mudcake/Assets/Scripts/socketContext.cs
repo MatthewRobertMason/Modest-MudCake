@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class socketContext : MonoBehaviour {
+public class socketContext : MonoBehaviour 
+{
+    public GameObject currentTile = null;
 
-	// Use this for initialization
-	void Start () {
-		
+
+	void Start () 
+    {
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 		
 	}
 }

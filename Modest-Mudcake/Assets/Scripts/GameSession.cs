@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSession : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+public class GameSession : MonoBehaviour 
+{
+	void Start () 
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 		
 	}
 }

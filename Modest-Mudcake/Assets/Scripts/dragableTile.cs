@@ -16,6 +16,8 @@ public class dragableTile : MonoBehaviour
     private Vector3 originalPosition;
     public bool held = false;
 
+    public LevelManager.TileType tileType;
+
 	void Start () 
     {
         audioSource = GetComponent<AudioSource>();
@@ -41,13 +43,13 @@ public class dragableTile : MonoBehaviour
         
         if (dragable)
         {
-            Transform nearest = nearestSocket();
+            GameObject nearest = nearestSocket();
 
             if (nearest != null)
             {
-                if (Vector3.Distance(this.transform.position, nearest.position) < snapDistance)
+                if (Vector3.Distance(this.transform.position, nearest.transform.position) < snapDistance)
                 {
-                    this.transform.position = nearest.position;
+                    this.transform.position = nearest.transform.position;
                     if (placeSound != null)
                         audioSource.PlayOneShot(placeSound);
                 }
@@ -72,7 +74,7 @@ public class dragableTile : MonoBehaviour
         }
     }
 
-    private Transform nearestSocket()
+    private GameObject nearestSocket()
     {
         Transform nearest = null;
 
@@ -93,6 +95,6 @@ public class dragableTile : MonoBehaviour
             }
         }
 
-        return nearest;
+        return nearest.gameObject;
     }
 }
