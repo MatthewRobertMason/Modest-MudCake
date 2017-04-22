@@ -149,6 +149,7 @@ public class LevelManager : MonoBehaviour
         {
             GameObject temp = createTile(t, gameBoardObject);
             temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (i*spacing), 0, 0);
+            temp.GetComponent<SpriteRenderer>().sortingOrder = i;
             i ++;
         }
 	}
