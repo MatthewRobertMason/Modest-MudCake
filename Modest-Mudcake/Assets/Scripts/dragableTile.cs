@@ -9,12 +9,16 @@ public class dragableTile : MonoBehaviour
 
     public GameObject board = null;
 
+    private AudioSource audioSource = null;
+    public AudioClip placeSound = null;
+    public AudioClip badPlaceSound = null;
+
     private Vector3 originalPosition;
     public bool held = false;
 
 	void Start () 
     {
-		
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	void Update () 
@@ -44,10 +48,14 @@ public class dragableTile : MonoBehaviour
                 if (Vector3.Distance(this.transform.position, nearest.position) < snapDistance)
                 {
                     this.transform.position = nearest.position;
+                    if (placeSound != null)
+                        audioSource.PlayOneShot(placeSound);
                 }
                 else
                 {
                     this.transform.position = originalPosition;
+                    if (badPlaceSound != null)
+                        audioSource.PlayOneShot(badPlaceSound);
                 }
             }
         }
