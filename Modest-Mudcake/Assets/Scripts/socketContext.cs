@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class socketContext : MonoBehaviour {
+public class socketContext : MonoBehaviour 
+{
+    [Header("Neighbours")]
+    public socketContext north = null;
+    public socketContext east = null;
+    public socketContext south = null;
+    public socketContext west = null;
 
-	// Use this for initialization
-	void Start () {
-		
+    LevelManager.tileType currentType;
+
+	void Start () 
+    {
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 		
 	}
 }
