@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class socketContext : MonoBehaviour 
 {
-    [Header("Neighbours")]
-    public socketContext north = null;
-    public socketContext east = null;
-    public socketContext south = null;
-    public socketContext west = null;
+    public GameObject currentTile = null;
 
-    LevelManager.tileType currentType;
 
 	void Start () 
     {
