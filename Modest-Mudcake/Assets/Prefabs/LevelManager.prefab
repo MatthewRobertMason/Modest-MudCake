@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBoardObject: {fileID: 0}
   tileBench: {fileID: 0}
+  benchGraphic: {fileID: 0}
   tileBenchLength: 0
   gameBoardWidth: 4
   gameBoardHeight: 4
