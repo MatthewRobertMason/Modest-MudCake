@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
      * Quit to level select
     */
 
+    public GameSession gameSession = null;
+
     // The object that will hold the board sockets
 	public GameObject gameBoardObjectPrefab = null;
 	public GameObject tileBenchPrefab = null;
@@ -124,6 +126,8 @@ public class LevelManager : MonoBehaviour
 
 	void Start ()
     {
+        gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
+
 		Debug.Log("LevelManager::Start");
         if (!initializedLevel)
             LevelManagerInit(testLevel, testTiles);

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MessageBox : MonoBehaviour 
 {
+    public GameSession gameSession = null;
+
     public string text;
     public string buttonText;
 
@@ -13,6 +15,7 @@ public class MessageBox : MonoBehaviour
 
     void Start()
     {
+        gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
         this.gameObject.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
