@@ -42,7 +42,7 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardHeight = 1;
 		level.gameBoardWidth = 2;
 
-        level.startMessage = "For this simple world, just place all of your tiles";
+        level.startMessage = "For this simple world, just drag any tiles from the bottom into the two spaces.";
         level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -131,6 +131,34 @@ public class LevelFactory : MonoBehaviour {
 		};
 		List<TileType> testTiles = new List<TileType> { 
 			TileType.River,TileType.River, TileType.Grassland, TileType.Swamp,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelFour(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Mountain, 6}
+		};
+		level.gameBoardHeight = 3;
+		level.gameBoardWidth = 3;
+
+		level.startMessage = "Mountains for miles.";
+		level.victoryMessage = "Good job!";
+
+		TileType[,] testLevel = {
+			{TileType.Empty,TileType.Empty, TileType.Empty},
+			{TileType.Empty,TileType.Empty, TileType.Empty},
+			{TileType.Empty,TileType.Empty, TileType.Empty},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
 		};
 		level.LevelManagerInit(testLevel, testTiles);
 
