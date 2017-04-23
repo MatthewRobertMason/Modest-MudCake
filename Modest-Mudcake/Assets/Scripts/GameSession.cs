@@ -36,6 +36,19 @@ public class GameSession : MonoBehaviour
         }
 	}
 
+	public void MusicStart(){
+		while (musicMuted) {
+			musicMuted = false;
+			MusicChange ();
+		}
+	}
+
+	public void MusicStop(){
+		musicMuted = true;
+		musicIndex = -1;
+		this.GetComponent<AudioSource>().Stop();
+	}
+
     public void MusicChange()
     {
         if (!musicMuted)
