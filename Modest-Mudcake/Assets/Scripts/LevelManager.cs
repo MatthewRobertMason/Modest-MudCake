@@ -303,14 +303,25 @@ public class LevelManager : MonoBehaviour
         return currentTile;
     }
 
+	bool hasCompletedLevel = false;
+
     void Update()
     {
-        if ((isFinished()) && (!messageBox.IsVisible()))
-        {
+		// Check if the map is finished, only enter this this once, when
+		// we first discover it is done
+		if (isFinished () && !hasCompletedLevel) {
+			hasCompletedLevel = true;
+			messageBox.text = victoryMessage;
+			messageBox.buttonText = "OK!";
+			messageBox.SetVisible(true);
+		}
+
+		// The map is completed, keep checking if the player has closed the message box
+		if (hasCompletedLevel && !messageBox.IsVisible()){
             // Return to menu
             Destroy(gameObject);
             SceneManager.LoadScene("level-menu");
-        }
+		}
 
 		if (currentChange != null) {
 			GameObject newTile = setTileType (currentChange.x, currentChange.y, currentChange.type);
@@ -522,14 +533,6 @@ public class LevelManager : MonoBehaviour
 
 				changeQueue.Enqueue (new TileChange (current.Key, current.Value, type));
 			}
-		}
-
-		if (isFinished ()) {
-			// TODO some kind of victory screen?
-            
-            messageBox.text = victoryMessage;
-            messageBox.buttonText = "OK!";
-            messageBox.SetVisible(true);
 		}
 	}
 
