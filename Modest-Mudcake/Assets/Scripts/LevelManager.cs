@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 using Pair = System.Collections.Generic.KeyValuePair<int, int>;
 
@@ -17,10 +18,15 @@ public class LevelManager : MonoBehaviour
     */
 
     // The object that will hold the board sockets
-    public GameObject gameBoardObject = null;
-    public GameObject tileBench = null;
-    public GameObject benchGraphic = null;
-    public float tileBenchLength = 8;
+	public GameObject gameBoardObjectPrefab = null;
+	public GameObject tileBenchPrefab = null;
+	//public GameObject benchGraphicPrefab = null;
+
+	protected GameObject gameBoardObject = null;
+	protected GameObject tileBench = null;
+	protected GameObject benchGraphic = null;
+
+	public float tileBenchLength = 8;
 
     [Range(1, 5)]
     public int gameBoardWidth = 4;
@@ -91,8 +97,14 @@ public class LevelManager : MonoBehaviour
 
 	void Start ()
     {
+		Debug.Log("LevelManager::Start");
         if (!initializedLevel)
             LevelManagerInit(testLevel, testTiles);
+
+		gameBoardObject = Instantiate(gameBoardObjectPrefab);
+		tileBench = Instantiate(tileBenchPrefab);
+		foreach (Transform child in tileBench.transform)
+			benchGraphic = child.gameObject;
 
 		/*
          * Build the board
@@ -403,6 +415,12 @@ public class LevelManager : MonoBehaviour
 				TileType type = chooseChange(currentType, couldChange);
 				setTileType(current.Key, current.Value, type);
 			}
+		}
+
+		if (isFinished ()) {
+			// TODO some kind of victory screen?
+			Destroy(gameObject);
+			SceneManager.LoadScene("level-menu");
 		}
 	}
 

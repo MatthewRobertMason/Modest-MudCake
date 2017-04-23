@@ -6,6 +6,10 @@ public class GameSession : MonoBehaviour
 {
     private static GameSession instance;
 
+	public static GameSession getInstance(){
+		return instance;
+	}
+
     public AudioClip[] music;
     private int musicIndex;
     private bool musicMuted = false;

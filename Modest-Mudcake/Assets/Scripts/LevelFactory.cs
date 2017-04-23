@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 using TileType = LevelManager.TileType;
 
 public class LevelFactory : MonoBehaviour {
+	public static string NEXT_NAME = "GLORIOUS DICTATOR";
 
-	static GameObject blankLevel = null;
-
-	// 
-	void Awake() {
-		if(blankLevel == null)
-			blankLevel = Resources.Load ("Prefabs/LevelManager") as GameObject;
-	}
+	public GameObject blankLevel = null;
 
 	// Use this for initialization
 	void Start () {
-				
+
 	}
 	
 	// Update is called once per frame
@@ -27,17 +23,19 @@ public class LevelFactory : MonoBehaviour {
 
 	static void startLevel(GameObject level){
 		Debug.Log ("START LEVEL");
-		// Set level somewhere
 
+		// Set level somewhere
+		level.name = NEXT_NAME;
 		DontDestroyOnLoad(level);
+		Debug.Log ("Loading game scene with level " + level.name);
 		SceneManager.LoadScene("Modest-Mudcake");
 	}
 
-	public static void BuildLevelOne(){
+	public void BuildLevelOne(){
 		// Build Level
 		GameObject levelObject = Instantiate(blankLevel);
 
-		LevelManager level = levelObject.GetComponent<LevelManager>();
+		var level = levelObject.GetComponent<LevelManager>();
 		level.finishIfNPlaced = 2;
 		level.gameBoardHeight = 1;
 		level.gameBoardWidth = 2;
@@ -54,13 +52,13 @@ public class LevelFactory : MonoBehaviour {
 		startLevel(levelObject);
 	}
 
-	public static void BuildLevelTwo(){
+	public void BuildLevelTwo(){
 		// Build Level
 		GameObject levelObject = Instantiate(blankLevel);
 
 		LevelManager level = levelObject.GetComponent<LevelManager>();
 		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
-			{TileType.Hills, 3}
+			{TileType.Water, 3}
 		};
 		level.gameBoardHeight = 2;
 		level.gameBoardWidth = 2;
