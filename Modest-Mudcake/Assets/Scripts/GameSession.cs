@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour 
 {
     private static GameSession instance;
+    private static GameObject background = null;
 
 	public static GameSession getInstance(){
 		return instance;
@@ -14,6 +16,8 @@ public class GameSession : MonoBehaviour
     private int musicIndex;
     private bool musicMuted = false;
     public bool soundsdMuted = false;
+
+    public GameObject Background = null;
 
 	void Start () 
     {
@@ -25,6 +29,7 @@ public class GameSession : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+            return;
         }
 
         if (music.Length > 0)
@@ -34,6 +39,12 @@ public class GameSession : MonoBehaviour
             audio.loop = true;
             audio.clip = music[musicIndex];
             audio.Play();
+        }
+
+        if (background == null)
+        {
+            background = Instantiate(Background);
+            DontDestroyOnLoad(background);
         }
 	}
 
@@ -72,6 +83,11 @@ public class GameSession : MonoBehaviour
         }
         else
             musicMuted = false;
+    }
+
+    public void ChangeLevel(string level)
+    {
+        SceneManager.LoadScene(level); 
     }
 	
 	void Update () 

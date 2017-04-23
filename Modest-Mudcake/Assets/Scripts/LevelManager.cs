@@ -324,7 +324,8 @@ public class LevelManager : MonoBehaviour
 		if (hasCompletedLevel && !messageBox.IsVisible()){
             // Return to menu
             Destroy(gameObject);
-            SceneManager.LoadScene("level-menu");
+            //SceneManager.LoadScene("level-menu");
+            gameSession.ChangeLevel("level-menu");
 		}
 
 		if (currentChange != null) {
@@ -580,6 +581,7 @@ public class LevelManager : MonoBehaviour
 
 	public void quit(){
 		Destroy (this.gameObject);
-		SceneManager.LoadScene ("level-menu");
+		//SceneManager.LoadScene ("level-menu");
+        gameSession.ChangeLevel("level-menu");
 	}
 }
