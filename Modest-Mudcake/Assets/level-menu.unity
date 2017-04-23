@@ -1280,7 +1280,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 762526051}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 229800198}
+        m_MethodName: BuildLevelTest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &762526051
@@ -1469,7 +1480,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 229800198}
-        m_MethodName: BuildLevelTest
+        m_MethodName: BuildLevelThree
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2239,7 +2250,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Level 3
 
-    Sandbox'
+    Bogged Down'
 --- !u!222 &1530053412
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2491,7 +2502,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1704610265}
   m_HandleRect: {fileID: 1704610264}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3002,7 +3013,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level 6
+  m_Text: 'Level 6
+
+    Sandbox'
 --- !u!222 &2134258849
 CanvasRenderer:
   m_ObjectHideFlags: 0
