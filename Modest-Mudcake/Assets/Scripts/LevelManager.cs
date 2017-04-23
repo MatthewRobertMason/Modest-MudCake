@@ -584,7 +584,7 @@ public class LevelManager : MonoBehaviour
 	}
 
 	public void showObjective(){
-		if (messageBox != null) {
+		if (messageBox != null && startMessage.Length > 0) {
 			messageBox.text = startMessage;
 			messageBox.buttonText = "OK!";
 			//messageBox.transform.gameObject.SetActive(true);

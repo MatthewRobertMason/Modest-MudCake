@@ -172,6 +172,180 @@ public class LevelFactory : MonoBehaviour {
 		startLevel(levelObject);
 	}
 
+	public void BuildLevelFive(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+//			{TileType.Mountain, 6}
+//		};
+//		level.gameBoardHeight = 3;
+//		level.gameBoardWidth = 3;
+		level.levelNumber = 5;
+//
+//		level.startMessage = "Mountains for miles.";
+//		level.victoryMessage = "Good job!";
+//
+//		TileType[,] testLevel = {
+//			{TileType.Empty,TileType.Empty, TileType.Empty},
+//			{TileType.Empty,TileType.Empty, TileType.Empty},
+//			{TileType.Empty,TileType.Empty, TileType.Empty},
+//		};
+//		List<TileType> testTiles = new List<TileType> { 
+//			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
+//		};
+//		level.LevelManagerInit(testLevel, testTiles);
+//
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelSix(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+		//			{TileType.Mountain, 6}
+		//		};
+		//		level.gameBoardHeight = 3;
+		//		level.gameBoardWidth = 3;
+		level.levelNumber = 6;
+		//
+		//		level.startMessage = "Mountains for miles.";
+		//		level.victoryMessage = "Good job!";
+		//
+		//		TileType[,] testLevel = {
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//		};
+		//		List<TileType> testTiles = new List<TileType> { 
+		//			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
+		//		};
+		//		level.LevelManagerInit(testLevel, testTiles);
+		//
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelSeven(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+		//			{TileType.Mountain, 6}
+		//		};
+		//		level.gameBoardHeight = 3;
+		//		level.gameBoardWidth = 3;
+		level.levelNumber = 7;
+		//
+		//		level.startMessage = "Mountains for miles.";
+		//		level.victoryMessage = "Good job!";
+		//
+		//		TileType[,] testLevel = {
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//		};
+		//		List<TileType> testTiles = new List<TileType> { 
+		//			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
+		//		};
+		//		level.LevelManagerInit(testLevel, testTiles);
+		//
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelEight(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+		//			{TileType.Mountain, 6}
+		//		};
+		//		level.gameBoardHeight = 3;
+		//		level.gameBoardWidth = 3;
+		level.levelNumber = 8;
+		//
+		//		level.startMessage = "Mountains for miles.";
+		//		level.victoryMessage = "Good job!";
+		//
+		//		TileType[,] testLevel = {
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//		};
+		//		List<TileType> testTiles = new List<TileType> { 
+		//			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
+		//		};
+		//		level.LevelManagerInit(testLevel, testTiles);
+		//
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelNine(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+		//			{TileType.Mountain, 6}
+		//		};
+		//		level.gameBoardHeight = 3;
+		//		level.gameBoardWidth = 3;
+		level.levelNumber = 9;
+		//
+		//		level.startMessage = "Mountains for miles.";
+		//		level.victoryMessage = "Good job!";
+		//
+		//		TileType[,] testLevel = {
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//		};
+		//		List<TileType> testTiles = new List<TileType> { 
+		//			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
+		//		};
+		//		level.LevelManagerInit(testLevel, testTiles);
+		//
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelTen(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+		//			{TileType.Mountain, 6}
+		//		};
+		//		level.gameBoardHeight = 3;
+		//		level.gameBoardWidth = 3;
+		level.levelNumber = 10;
+		//
+		//		level.startMessage = "Mountains for miles.";
+		//		level.victoryMessage = "Good job!";
+		//
+		//		TileType[,] testLevel = {
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//			{TileType.Empty,TileType.Empty, TileType.Empty},
+		//		};
+		//		List<TileType> testTiles = new List<TileType> { 
+		//			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
+		//		};
+		//		level.LevelManagerInit(testLevel, testTiles);
+		//
+		// Start the level created
+		startLevel(levelObject);
+	}
+
 	public void BuildLevelTest(){
 		// Build Level
 		GameObject levelObject = Instantiate(blankLevel);
