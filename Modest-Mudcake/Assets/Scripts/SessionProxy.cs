@@ -27,13 +27,11 @@ public class SessionProxy : MonoBehaviour {
 	}
 
 	public void StartSound(){
-		Debug.Log ("Start Sound");
-		var session = GameSession.getInstance();
+		GameSession.getInstance().soundsdMuted = false;
 	}
 
 	public void StopSound(){
-		Debug.Log ("Stop Sound");
-		var session = GameSession.getInstance();
+		GameSession.getInstance().soundsdMuted = true;
 	}
 
 	public void SetMusic(bool value){
