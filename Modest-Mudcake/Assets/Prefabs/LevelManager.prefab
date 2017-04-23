@@ -55,6 +55,8 @@ MonoBehaviour:
     type: 2}
   tileBenchPrefab: {fileID: 1055721871425790, guid: 94445b4567846a542964b2a093302393,
     type: 2}
+  controlBarPrefab: {fileID: 1782647211979584, guid: 5f0d8a577712e824da4ea18e1b92effb,
+    type: 2}
   tileBenchLength: 3
   gameBoardWidth: 4
   gameBoardHeight: 4

@@ -82,7 +82,7 @@ public class LevelFactory : MonoBehaviour {
 		startLevel(levelObject);
 	}
 
-	public void BuildLevelThree(){
+	public void BuildLevelTest(){
 		// Build Level
 		GameObject levelObject = Instantiate(blankLevel);
 

@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
     // The object that will hold the board sockets
 	public GameObject gameBoardObjectPrefab = null;
 	public GameObject tileBenchPrefab = null;
-	//public GameObject benchGraphicPrefab = null;
+	public GameObject controlBarPrefab = null;
 
 	protected GameObject gameBoardObject = null;
 	protected GameObject tileBench = null;
@@ -142,67 +142,8 @@ public class LevelManager : MonoBehaviour
         gameBoardWidth = _level.GetLength(1);
         gameBoardHeight = _level.GetLength(0);
 
-        officialBoard = new GameObject[gameBoardHeight, gameBoardWidth];
+		reset();
 
-        for (int y = 0; y < gameBoardHeight; y++)
-        {
-            for (int x = 0; x < gameBoardWidth; x++)
-            {
-				GameObject currentSocket = null;
-
-                if (_level[y,x] != TileType.Null)
-                {
-                    currentSocket = Instantiate(socketObject, gameBoardObject.transform);
-
-                    currentSocket.transform.position = gameBoardObject.transform.position +
-                        new Vector3(x - ((float)gameBoardWidth / 2.0f) + 0.5f, y - ((float)gameBoardHeight / 2.0f) + 0.5f, 0);
-
-					GameObject currentTile = null;
-
-					if ((_level[y, x] != TileType.Empty) && (_level[y, x] != TileType.Null))
-						currentTile = createTile(_level[y, x], gameBoardObject);
-
-                    socketContext sc = currentSocket.GetComponent<socketContext>();
-                    sc.x = x;
-                    sc.y = y;
-
-                    if (currentTile != null)
-                    {
-                        currentTile.transform.position = currentSocket.transform.position;
-                        currentSocket.GetComponent<socketContext>().currentTile = currentTile;
-                    }
-                }
-
-                officialBoard[y, x] = currentSocket;
-            }
-        }
-
-        // Add tiles to the bench
-        float benchStart = -5.0f;
-        float spacing = 1.0f;
-
-        benchGraphic.transform.localScale = new Vector3(tileBenchLength*2+2, 1, 1);
-
-        if (_availableTiles.Count < tileBenchLength)
-        {
-            benchStart = ((float)_availableTiles.Count / 2.0f);
-            spacing = 1.0f;
-        }
-        else if (_availableTiles.Count > 0)
-        {
-            benchStart = ((float)tileBenchLength/2.0f);
-            spacing = (float)tileBenchLength / (float)_availableTiles.Count;
-        }
-
-        int i = 0;
-        foreach (TileType t in _availableTiles)
-        {
-            GameObject temp = createTile(t, gameBoardObject);
-            temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (spacing/2) + (i*spacing), 0, 0);
-            temp.GetComponent<SpriteRenderer>().sortingOrder = i+1;
-            i ++;
-        }
-        
         // Attempt to load the MessageBox
         GameObject mb = Instantiate(messageBoxPrefab);
         if (mb != null)
@@ -215,6 +156,80 @@ public class LevelManager : MonoBehaviour
         }
         else
             messageBox = null;
+	}
+
+	public void reset(){
+		foreach (var tile in Object.FindObjectsOfType<dragableTile>()) {
+			Destroy(tile.gameObject);
+		}
+
+		if (officialBoard != null) {
+			foreach (var slot in officialBoard) {
+				Destroy (slot);
+			}
+		}
+
+		officialBoard = new GameObject[gameBoardHeight, gameBoardWidth];
+
+		for (int y = 0; y < gameBoardHeight; y++)
+		{
+			for (int x = 0; x < gameBoardWidth; x++)
+			{
+				GameObject currentSocket = null;
+
+				if (_level[y,x] != TileType.Null)
+				{
+					currentSocket = Instantiate(socketObject, gameBoardObject.transform);
+
+					currentSocket.transform.position = gameBoardObject.transform.position +
+						new Vector3(x - ((float)gameBoardWidth / 2.0f) + 0.5f, y - ((float)gameBoardHeight / 2.0f) + 0.5f, 0);
+
+					GameObject currentTile = null;
+
+					if ((_level[y, x] != TileType.Empty) && (_level[y, x] != TileType.Null))
+						currentTile = createTile(_level[y, x], gameBoardObject);
+
+					socketContext sc = currentSocket.GetComponent<socketContext>();
+					sc.x = x;
+					sc.y = y;
+
+					if (currentTile != null)
+					{
+						currentTile.transform.position = currentSocket.transform.position;
+						currentSocket.GetComponent<socketContext>().currentTile = currentTile;
+					}
+				}
+
+				officialBoard[y, x] = currentSocket;
+			}
+		}
+
+		// Add tiles to the bench
+		float benchStart = -5.0f;
+		float spacing = 1.0f;
+
+		benchGraphic.transform.localScale = new Vector3(tileBenchLength*2+2, 1, 1);
+
+		if (_availableTiles.Count < tileBenchLength)
+		{
+			benchStart = ((float)_availableTiles.Count / 2.0f);
+			spacing = 1.0f;
+		}
+		else if (_availableTiles.Count > 0)
+		{
+			benchStart = ((float)tileBenchLength/2.0f);
+			spacing = (float)tileBenchLength / (float)_availableTiles.Count;
+		}
+
+		int i = 0;
+		foreach (TileType t in _availableTiles)
+		{
+			GameObject temp = createTile(t, gameBoardObject);
+			temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (spacing/2) + (i*spacing), 0, 0);
+			temp.GetComponent<SpriteRenderer>().sortingOrder = i+1;
+			i ++;
+		}
+
 	}
 
 	private TileType getTileType(int x, int y)
