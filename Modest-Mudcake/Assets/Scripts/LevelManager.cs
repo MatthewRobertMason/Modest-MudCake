@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 using Pair = System.Collections.Generic.KeyValuePair<int, int>;
 
+
 public class LevelManager : MonoBehaviour
 {
     /*
@@ -79,9 +80,28 @@ public class LevelManager : MonoBehaviour
         Swamp
     }
 
+
     // Message Box
     public GameObject messageBoxPrefab = null;
     private MessageBox messageBox = null;
+
+	class TileChange {
+		public TileChange(int _x, int _y, TileType _t){
+			x = _x;
+			y = _y;
+			type = _t;
+		}
+
+		public int x;
+		public int y;
+		public TileType type;
+	};
+
+	// List of changes to the 
+	Queue<TileChange> changeQueue = new Queue<TileChange>();
+	protected const float tileChangeTime = 0.8f;
+	TileChange currentChange = null;
+	float currentChangeStart = 0;
 
 	// Assorted exit conditions
 	public int finishIfNPlaced = -1;
@@ -264,10 +284,21 @@ public class LevelManager : MonoBehaviour
         if ((isFinished()) && (!messageBox.IsVisible()))
         {
             // Return to menu
-
             Destroy(gameObject);
             SceneManager.LoadScene("level-menu");
         }
+
+		if (currentChange != null) {
+			setTileType (currentChange.x, currentChange.y, currentChange.type);
+
+			if (currentChangeStart + tileChangeTime < Time.time)
+				currentChange = null;
+		} 
+			
+		if (changeQueue.Count > 0 && currentChange == null) {
+			currentChange = changeQueue.Dequeue ();	
+			currentChangeStart = Time.time;
+		}
 	}
 
 	TileType transition(TileType current, TileType catalyst){
@@ -393,9 +424,9 @@ public class LevelManager : MonoBehaviour
 		// if(oldPosition == newPosition) return;
 		//
 
-		HashSet<Pair> updated = new HashSet<Pair>();
-		HashSet<Pair> finished = new HashSet<Pair>();
-		updated.Add (changed);
+		var updated = new Dictionary<Pair, TileType>();
+		var finished = new HashSet<Pair>();
+		updated[changed] = getTileType(x, y);
 
 		// fixedObjects.copyTo (finished);
 		finished.Add (changed);
@@ -415,8 +446,9 @@ public class LevelManager : MonoBehaviour
 			// Check if any of the changed tiles are adjacent to this one have changed
 			HashSet<TileType> couldChange = new HashSet<TileType>();
 			foreach (Pair neighbour in getNeighbours(current)) {
-				if(updated.Contains(neighbour)){
-					TileType newType = transition(currentType, getTileType(neighbour.Key, neighbour.Value));
+				if(updated.ContainsKey(neighbour)){
+					TileType neighbourType = updated[neighbour];
+					TileType newType = transition(currentType, neighbourType);
 
 					if (newType != currentType) {
 						couldChange.Add (newType);
@@ -428,7 +460,6 @@ public class LevelManager : MonoBehaviour
 			if (couldChange.Count > 0) {
 				// The current tile is changing, make sure neigbours that are not already
 				// changed or forbidden to change are updated
-				updated.Add (current);
 				finished.Add (current);
 				foreach (Pair neighbour in getNeighbours(current)) {
 					if (!finished.Contains (neighbour)) {
@@ -438,7 +469,9 @@ public class LevelManager : MonoBehaviour
 
 				//
 				TileType type = chooseChange(currentType, couldChange);
-				setTileType(current.Key, current.Value, type);
+				updated [current] = type;
+
+				changeQueue.Enqueue (new TileChange (current.Key, current.Value, type));
 			}
 		}
 
