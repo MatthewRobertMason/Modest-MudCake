@@ -162,7 +162,8 @@ public class LevelManager : MonoBehaviour
 		GameObject tile = officialBoard[y, x].GetComponent<socketContext>().currentTile;
 		if (tile != null)
 			return tile.GetComponent<dragableTile>().tileType;
-		return TileType.Null;
+		
+		return TileType.Empty;
 	}
 
 	private void setTileType(int x, int y, TileType type)
@@ -352,19 +353,23 @@ public class LevelManager : MonoBehaviour
 		finished.Add (changed);
 
 		Queue<Pair> front = new Queue<Pair>();
-		front.Enqueue(changed);
+		foreach(Pair neighbour in getNeighbours(changed))
+			front.Enqueue(neighbour);
 
 		//
 		while(front.Count > 0){
 			// Get the next tile to process
 			Pair current = front.Dequeue();
 			TileType currentType = getTileType(current.Key, current.Value);
+			if (currentType == TileType.Null)
+				continue;
 
 			// Check if any of the changed tiles are adjacent to this one have changed
 			HashSet<TileType> couldChange = new HashSet<TileType>();
 			foreach (Pair neighbour in getNeighbours(current)) {
 				if(updated.Contains(neighbour)){
-					TileType newType = transition (currentType, getTileType(neighbour.Key, neighbour.Value));
+					TileType newType = transition(currentType, getTileType(neighbour.Key, neighbour.Value));
+
 					if (newType != currentType) {
 						couldChange.Add (newType);
 					}
