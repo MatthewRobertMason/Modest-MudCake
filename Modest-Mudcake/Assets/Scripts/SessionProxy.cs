@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SessionProxy : MonoBehaviour {
+    public GameSession gameSession = null;
 
 	// Use this for initialization
 	void Start () {
-
+        gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
 	}
 	
 	// Update is called once per frame
@@ -16,11 +17,13 @@ public class SessionProxy : MonoBehaviour {
 	}
 
 	public void SwitchToLevels(){
-		SceneManager.LoadScene ("level-menu");
+		//SceneManager.LoadScene ("level-menu");
+        gameSession.ChangeLevel("level-menu");
 	}
 
 	public void SwitchToLanding(){
-		SceneManager.LoadScene ("main-menu");
+		//SceneManager.LoadScene ("main-menu");
+        gameSession.ChangeLevel("main-menu");
 	}
 
 	public void SetSound(bool value){
@@ -31,11 +34,11 @@ public class SessionProxy : MonoBehaviour {
 	}
 
 	public void StartSound(){
-		GameSession.getInstance().soundsdMuted = false;
+        gameSession.soundsdMuted = false;
 	}
 
 	public void StopSound(){
-		GameSession.getInstance().soundsdMuted = true;
+        gameSession.soundsdMuted = true;
 	}
 
 	public void SetMusic(bool value){
@@ -46,11 +49,11 @@ public class SessionProxy : MonoBehaviour {
 	}
 
 	public void StartMusic(){
-		GameSession.getInstance().MusicStart();
+        gameSession.MusicStart();
 	}
 
 	public void StopMusic(){
-		GameSession.getInstance().MusicStop();
+        gameSession.MusicStop();
 	}
 
 	public void ExitGame(){
