@@ -43,6 +43,7 @@ public class LevelFactory : MonoBehaviour {
 		level.finishIfNPlaced = 2;
 		level.gameBoardHeight = 1;
 		level.gameBoardWidth = 2;
+		level.levelNumber = 1;
 
         level.startMessage = "For this simple world, just drag any tiles from the bottom into the two spaces.";
         level.victoryMessage = "Good job!";
@@ -96,6 +97,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 2;
 		level.gameBoardWidth = 2;
+		level.levelNumber = 2;
 
         level.startMessage = "For this simple world we want all water";
         level.victoryMessage = "Good job!";
@@ -123,6 +125,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 2;
 		level.gameBoardWidth = 3;
+		level.levelNumber = 3;
 
 		level.startMessage = "Make a big swamp.";
 		level.victoryMessage = "Good job!";
@@ -150,6 +153,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 3;
 		level.gameBoardWidth = 3;
+		level.levelNumber = 4;
 
 		level.startMessage = "Mountains for miles.";
 		level.victoryMessage = "Good job!";

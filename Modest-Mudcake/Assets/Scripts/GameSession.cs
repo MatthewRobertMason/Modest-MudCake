@@ -88,6 +88,10 @@ public class GameSession : MonoBehaviour
             musicMuted = false;
     }
 
+	public void FinishedLevel(int number){
+		ButtonMark.FinishedLevel (number);
+	}
+
     public void ChangeLevel(string level)
     {
         SceneManager.LoadScene(level); 
