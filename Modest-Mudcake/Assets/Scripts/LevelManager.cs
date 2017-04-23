@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
 
     public bool initializedLevel = false;
 
-    public void LevelManagerFactory(TileType[,] level, List<TileType> availableTiles)
+    public void LevelManagerInit(TileType[,] level, List<TileType> availableTiles)
     {
         if (level != null)
             _level = level;
@@ -92,7 +92,7 @@ public class LevelManager : MonoBehaviour
 	void Start ()
     {
         if (!initializedLevel)
-            LevelManagerFactory(testLevel, testTiles);
+            LevelManagerInit(testLevel, testTiles);
 
 		/*
          * Build the board
