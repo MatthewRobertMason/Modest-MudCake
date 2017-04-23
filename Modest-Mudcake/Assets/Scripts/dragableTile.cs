@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class dragableTile : MonoBehaviour 
 {
+    public GameSession gameSession = null;
     public bool dragable = true;
     public float snapDistance = 1.0f;
 
@@ -24,6 +25,13 @@ public class dragableTile : MonoBehaviour
 	void Start () 
     {
         audioSource = GetComponent<AudioSource>();
+        gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
+
+        if (gameSession == null)
+        {
+            Debug.Log("Error finding GameSession");
+            Destroy(this.gameObject);
+        }
 	}
 	
 	void Update () 
@@ -57,8 +65,11 @@ public class dragableTile : MonoBehaviour
                         currentSocket.GetComponent<socketContext>().currentTile = null;
 
                     this.transform.position = nearest.transform.position;
-                    if (placeSound != null)
-                        audioSource.PlayOneShot(placeSound);
+                    if (!gameSession.soundsdMuted)
+                    {
+                        if (placeSound != null)
+                            audioSource.PlayOneShot(placeSound);
+                    }
 
 					socketContext sc = nearest.GetComponent<socketContext> ();
 					int x = sc.x;
@@ -71,8 +82,11 @@ public class dragableTile : MonoBehaviour
                 else
                 {
                     this.transform.position = originalPosition;
-                    if (badPlaceSound != null)
-                        audioSource.PlayOneShot(badPlaceSound);
+                    if (!gameSession.soundsdMuted)
+                    {
+                        if (badPlaceSound != null)
+                            audioSource.PlayOneShot(badPlaceSound);
+                    }
                 }
             }
         }

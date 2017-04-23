@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class LevelBootstrap : MonoBehaviour {
 
+    public GameSession gameSession = null;
+
 	// Use this for initialization
 	void Start () {
+        gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
 		Debug.Log("Starting Scene... Try to start level: " + LevelFactory.NEXT_NAME);
 		GameObject level = GameObject.Find(LevelFactory.NEXT_NAME);
 		if (level == null) {

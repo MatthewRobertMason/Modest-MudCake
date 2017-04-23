@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+//using UnityEditor;
 
 using TileType = LevelManager.TileType;
 
 public class LevelFactory : MonoBehaviour {
+    public GameSession gameSession = null;
+
 	public static string NEXT_NAME = "GLORIOUS DICTATOR";
 
 	public GameObject blankLevel = null;
 
 	// Use this for initialization
 	void Start () {
-
+        gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
 	}
 	
 	// Update is called once per frame
