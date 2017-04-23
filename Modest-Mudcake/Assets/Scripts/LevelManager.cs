@@ -70,9 +70,15 @@ public class LevelManager : MonoBehaviour
         Swamp
     }
 
+
+	// Assorted exit conditions
+	public int finishIfNPlaced = -1;
+	public Dictionary<TileType, int> finishIfTypesPlaced = null; 
+
+
     public bool initializedLevel = false;
 
-    public void LevelManagerFactory(TileType[,] level, List<TileType> availableTiles)
+    public void LevelManagerInit(TileType[,] level, List<TileType> availableTiles)
     {
         if (level != null)
             _level = level;
@@ -86,8 +92,8 @@ public class LevelManager : MonoBehaviour
 	void Start ()
     {
         if (!initializedLevel)
-            LevelManagerFactory(testLevel, testTiles);
-        
+            LevelManagerInit(testLevel, testTiles);
+
 		/*
          * Build the board
          * Create the tiles
@@ -179,9 +185,6 @@ public class LevelManager : MonoBehaviour
         newTile.transform.position = officialBoard[y, x].transform.position;
         sc.currentTile = newTile;
         sc.currentTile.GetComponent<dragableTile>().currentSocket = officialBoard[y, x];
-        
-
-		Debug.Log("SET TILE TYPE");
 	}
 
     private GameObject createTile(TileType t, GameObject board)
@@ -266,6 +269,8 @@ public class LevelManager : MonoBehaviour
 		case TileType.River:
 			if (catalyst == TileType.River)
 				return TileType.Swamp;
+			if (catalyst == TileType.Water)
+				return TileType.Water;
 			break;
 
 		case TileType.Hills:
@@ -399,5 +404,43 @@ public class LevelManager : MonoBehaviour
 				setTileType(current.Key, current.Value, type);
 			}
 		}
+	}
+
+	bool isFinished(){
+		if (finishIfNPlaced > 0)
+			if (countAllTiles () >= finishIfNPlaced)
+				return true;
+
+		if (finishIfTypesPlaced != null) {
+			bool allMatched = true;
+			foreach(TileType key in finishIfTypesPlaced.Keys){
+				allMatched &= countTiles(key) >= finishIfTypesPlaced[key];
+			}
+			return allMatched;
+		}
+
+		return false;
+	}
+
+	int countAllTiles(){
+		int count = 0;
+		for (int x = 0; x < gameBoardWidth; x++) {
+			for (int y = 0; y < gameBoardHeight; y++) {
+				TileType type = getTileType (x, y);
+				count += (type != TileType.Null && type != TileType.Empty) ? 1 : 0;
+			}			
+		}
+		return count;
+	}
+
+	int countTiles(TileType target){
+		int count = 0;
+		for (int x = 0; x < gameBoardWidth; x++) {
+			for (int y = 0; y < gameBoardHeight; y++) {
+				TileType type = getTileType (x, y);
+				count += (type == target ? 1 : 0);
+			}			
+		}
+		return count;
 	}
 }

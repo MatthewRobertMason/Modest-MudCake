@@ -46,7 +46,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1090479918358282}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 584d188e0e677b04b946c455fd4eec77, type: 3}
   m_Name: 
@@ -54,7 +54,7 @@ MonoBehaviour:
   gameBoardObject: {fileID: 0}
   tileBench: {fileID: 0}
   benchGraphic: {fileID: 0}
-  tileBenchLength: 0
+  tileBenchLength: 3
   gameBoardWidth: 4
   gameBoardHeight: 4
   socketObject: {fileID: 1253376186693012, guid: e0e6345e60c39d149957cf8eaa13e069,
@@ -67,4 +67,5 @@ MonoBehaviour:
   town: {fileID: 1142794310621288, guid: a57f6d48b9cbe2c4d9c45c7adbbbe623, type: 2}
   water: {fileID: 1201905063030274, guid: d796c402d73461e4e85483d0d5915b02, type: 2}
   swamp: {fileID: 1430141667477842, guid: 087e7f51ace981e479a6e990b0295b12, type: 2}
+  finishIfNPlaced: -1
   initializedLevel: 0
