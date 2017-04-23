@@ -197,6 +197,7 @@ public class LevelManager : MonoBehaviour
 
 					if (currentTile != null)
 					{
+						currentTile.GetComponent<dragableTile>().dragable = false;
 						currentTile.transform.position = currentSocket.transform.position;
 						currentSocket.GetComponent<socketContext>().currentTile = currentTile;
 					}
