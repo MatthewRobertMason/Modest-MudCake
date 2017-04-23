@@ -172,6 +172,7 @@ public class LevelManager : MonoBehaviour
         GameObject newTile = createTile(type, gameBoardObject);
         newTile.transform.position = officialBoard[y, x].transform.position;
         sc.currentTile = newTile;
+        
 
 		Debug.Log("SET TILE TYPE");
 	}
