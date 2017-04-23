@@ -449,8 +449,54 @@ public class LevelManager : MonoBehaviour
 		return current;
 	}
 
+	// This method trys to make sure that if there are multiple possible
+	// transformations for a tile, it will choose consistantly
 	TileType chooseChange(TileType old, HashSet<TileType> newValues){
-		// TODO for determinism each possible set of transitions for a tile should have a priority
+		switch (old) {
+		case TileType.Mountain:
+			if (newValues.Contains(TileType.Hills)) return TileType.Hills;
+			break;
+
+		case TileType.Grassland:
+			if (newValues.Contains(TileType.River)) return TileType.River;
+			if (newValues.Contains(TileType.Desert)) return TileType.Desert;
+			if (newValues.Contains(TileType.Town)) return TileType.Town;
+			if (newValues.Contains(TileType.Swamp)) return TileType.Swamp;
+			break;
+
+		case TileType.Desert:
+			if (newValues.Contains(TileType.Hills)) return TileType.Hills;
+			if (newValues.Contains(TileType.Grassland)) return TileType.Grassland;
+			break;
+
+		case TileType.River:
+			if (newValues.Contains(TileType.Swamp)) return TileType.Swamp;
+			if (newValues.Contains(TileType.Water)) return TileType.Water;
+			break;
+
+		case TileType.Hills:
+			if (newValues.Contains(TileType.Mountain)) return TileType.Mountain;
+			if (newValues.Contains(TileType.Grassland)) return TileType.Grassland;
+			if (newValues.Contains(TileType.River)) return TileType.River;
+			break;
+
+		case TileType.Town:
+			if (newValues.Contains(TileType.Swamp)) return TileType.Swamp;
+			if (newValues.Contains(TileType.Desert)) return TileType.Desert;
+			break;
+
+		case TileType.Water:
+			if (newValues.Contains(TileType.Swamp)) return TileType.Swamp;
+			break;
+
+		case TileType.Swamp:
+			if (newValues.Contains(TileType.Grassland)) return TileType.Grassland;
+			if (newValues.Contains(TileType.River)) return TileType.River;
+			if (newValues.Contains(TileType.Water)) return TileType.Water;
+			break;
+		}
+
+		// Fallthrough, if we fucked up, just pretend everything is fine
 		TileType[] data = new TileType[newValues.Count];
 		newValues.CopyTo (data);
 		return data [0];
