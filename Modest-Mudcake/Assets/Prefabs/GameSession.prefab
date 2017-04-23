@@ -133,4 +133,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music:
+  - {fileID: 8300000, guid: d5334eb2cbd5bc544acc019d0efe715d, type: 3}
   - {fileID: 8300000, guid: 4b4c5118c09ba794283fc377940d0f2b, type: 3}

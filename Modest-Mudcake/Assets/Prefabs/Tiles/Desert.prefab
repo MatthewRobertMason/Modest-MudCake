@@ -163,9 +163,10 @@ MonoBehaviour:
   snapDistance: 1
   board: {fileID: 0}
   level: {fileID: 0}
-  placeSound: {fileID: 8300000, guid: 014f1c29602635d47b25ed95f164e3a6, type: 3}
-  badPlaceSound: {fileID: 8300000, guid: 05e25dfc59eb2854bbdec2ca2ef59c28, type: 3}
+  placeSound: {fileID: 8300000, guid: 2336bf28f80144d4ca7d788074c6c0aa, type: 3}
+  badPlaceSound: {fileID: 8300000, guid: 7f421531c2b8dc54ab592b9be6f30c2d, type: 3}
   held: 0
+  currentSocket: {fileID: 0}
   tileType: 4
 --- !u!212 &212267195107095152
 SpriteRenderer:
