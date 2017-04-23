@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14157b1c69d131f4488a3430273c2d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSession: {fileID: 0}
   dragable: 1
   snapDistance: 1
   board: {fileID: 0}
@@ -300,16 +301,16 @@ ParticleSystem:
       minMaxState: 4
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0, a: 1}
-        key1: {r: 1, g: 0, b: 1, a: 1}
+        key0: {r: 0.64705884, g: 0, b: 0.64705884, a: 1}
+        key1: {r: 1, g: 0.19117647, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 1, a: 1}
         key3: {r: 0, g: 1, b: 1, a: 1}
         key4: {r: 0, g: 1, b: 0, a: 1}
         key5: {r: 1, g: 1, b: 0, a: 0}
         key6: {r: 1, g: 0, b: 0, a: 0}
         key7: {r: 1, g: 0, b: 0, a: 0}
-        ctime0: 0
-        ctime1: 10879
+        ctime0: 32768
+        ctime1: 65535
         ctime2: 21845
         ctime3: 32768
         ctime4: 43686
@@ -324,8 +325,8 @@ ParticleSystem:
         atime5: 0
         atime6: 0
         atime7: 0
-        m_Mode: 0
-        m_NumColorKeys: 7
+        m_Mode: 1
+        m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
