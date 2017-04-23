@@ -73,7 +73,11 @@ public class GameSession : MonoBehaviour
         else
             musicMuted = false;
     }
-	
+
+	public void FinishedLevel(int number){
+		ButtonMark.FinishedLevel (number);
+	}
+
 	void Update () 
     {
 		

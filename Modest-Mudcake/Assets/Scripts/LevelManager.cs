@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour
 	protected GameObject benchGraphic = null;
 
 	public float tileBenchLength = 8;
+	public int levelNumber = -1;
 
     [Range(1, 5)]
     public int gameBoardWidth = 4;
@@ -314,6 +315,7 @@ public class LevelManager : MonoBehaviour
 		// Check if the map is finished, only enter this this once, when
 		// we first discover it is done
 		if (isFinished () && !hasCompletedLevel) {
+			gameSession.FinishedLevel (levelNumber);
 			hasCompletedLevel = true;
 			messageBox.text = victoryMessage;
 			messageBox.buttonText = "OK!";
