@@ -62,7 +62,7 @@ MonoBehaviour:
   gameBoardHeight: 4
   startMessage: 
   victoryMessage: 
-  socketObject: {fileID: 1253376186693012, guid: e0e6345e60c39d149957cf8eaa13e069,
+  socketObject: {fileID: 1843477259386816, guid: a18c29e24bae61841ae05b5a4449311e,
     type: 2}
   mountain: {fileID: 1461966823329432, guid: ed9c6fec4c9df5247a30004a6f6f9c41, type: 2}
   grassland: {fileID: 1544977471500646, guid: 3a5ad05bf1c48ec4f9b761e185e4d4b8, type: 2}
