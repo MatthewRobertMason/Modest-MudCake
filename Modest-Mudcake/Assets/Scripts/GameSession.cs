@@ -19,6 +19,9 @@ public class GameSession : MonoBehaviour
 
     public GameObject Background = null;
 
+    public float soundVolume;
+    public float musicVolume;
+
 	void Start () 
     {
         if (instance == null)
@@ -93,7 +96,19 @@ public class GameSession : MonoBehaviour
     {
         SceneManager.LoadScene(level); 
     }
-	
+
+    public void OnSoundVolumeChange(float value)
+    {
+        soundVolume = value;
+    }
+
+    public void OnMusicVolumeChange(float value)
+    {
+        AudioSource audio = this.GetComponent<AudioSource>();
+        musicVolume = value;
+        audio.volume = value;
+    }
+
 	void Update () 
     {
 		
