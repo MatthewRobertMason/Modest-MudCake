@@ -40,6 +40,9 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardHeight = 1;
 		level.gameBoardWidth = 2;
 
+        level.startMessage = "For this simple world, just place all of your tiles";
+        level.victoryMessage = "Good job!";
+
 		TileType[,] testLevel = {
 			{TileType.Empty,TileType.Empty},
 		};
@@ -62,6 +65,9 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 2;
 		level.gameBoardWidth = 2;
+
+        level.startMessage = "For this simple world we want all water";
+        level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
 			{TileType.Empty,TileType.Empty},
