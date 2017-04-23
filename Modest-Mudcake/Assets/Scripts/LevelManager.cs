@@ -168,6 +168,12 @@ public class LevelManager : MonoBehaviour
 
 	private void setTileType(int x, int y, TileType type)
 	{
+        socketContext sc = officialBoard[y, x].GetComponent<socketContext>();
+        Destroy(sc.currentTile);
+        GameObject newTile = createTile(type, gameBoardObject);
+        newTile.transform.position = officialBoard[y, x].transform.position;
+        sc.currentTile = newTile;
+
 		Debug.Log("SET TILE TYPE");
 	}
 
