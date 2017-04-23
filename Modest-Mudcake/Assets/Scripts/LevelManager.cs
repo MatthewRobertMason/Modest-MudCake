@@ -91,9 +91,10 @@ public class LevelManager : MonoBehaviour
 
 	// List of changes to the 
 	Queue<TileChange> changeQueue = new Queue<TileChange>();
-	protected const float tileChangeTime = 0.8f;
+	protected const float tileChangeTime = 0.5f;
 	TileChange currentChange = null;
 	float currentChangeStart = 0;
+	HashSet<GameObject> draggableTiles = new HashSet<GameObject>();
 
 	// Assorted exit conditions
 	public int finishIfNPlaced = -1;
@@ -210,11 +211,17 @@ public class LevelManager : MonoBehaviour
 	private void setTileType(int x, int y, TileType type)
 	{
         socketContext sc = officialBoard[y, x].GetComponent<socketContext>();
-        sc.currentTile.GetComponent<dragableTile>().Destroy();
+		bool inDraggable = draggableTiles.Contains (sc.currentTile);
+		if (inDraggable)
+			draggableTiles.Remove (sc.currentTile);
+		sc.currentTile.GetComponent<dragableTile>().Destroy();
+
         GameObject newTile = createTile(type, gameBoardObject);
         newTile.transform.position = officialBoard[y, x].transform.position;
         sc.currentTile = newTile;
         sc.currentTile.GetComponent<dragableTile>().currentSocket = officialBoard[y, x];
+		if (inDraggable)
+			draggableTiles.Add (sc.currentTile);
 	}
 
     private GameObject createTile(TileType t, GameObject board)
@@ -264,13 +271,37 @@ public class LevelManager : MonoBehaviour
 		if (currentChange != null) {
 			setTileType (currentChange.x, currentChange.y, currentChange.type);
 
-			if (currentChangeStart + tileChangeTime < Time.time)
+			if (currentChangeStart + tileChangeTime < Time.time) {
 				currentChange = null;
+				enableDragging ();
+			}
 		} 
 			
 		if (changeQueue.Count > 0 && currentChange == null) {
 			currentChange = changeQueue.Dequeue ();	
 			currentChangeStart = Time.time;
+			disableDragging();
+		}
+	}
+
+	void disableDragging(){
+		draggableTiles.Clear();
+		foreach (var tile in Object.FindObjectsOfType<dragableTile>()) {
+			var draggable = tile as dragableTile;
+			if (draggable.dragable && draggable.gameObject != null) {
+				draggableTiles.Add (draggable.gameObject);
+				draggable.dragable = false;
+			}
+		}
+	}
+
+	void enableDragging(){
+		if(draggableTiles != null){
+			foreach (var go in draggableTiles) {
+				if(go != null)
+					go.GetComponent<dragableTile> ().dragable = true;
+			}
+			draggableTiles.Clear();
 		}
 	}
 
