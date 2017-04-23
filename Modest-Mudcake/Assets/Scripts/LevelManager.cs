@@ -51,6 +51,9 @@ public class LevelManager : MonoBehaviour
                                                             TileType.Hills, TileType.Town, TileType.Water, TileType.Swamp
                                                           };
 
+    public string startMessage;
+    public string victoryMessage;
+
     public GameObject socketObject = null;
 
     public GameObject mountain = null;
@@ -76,6 +79,9 @@ public class LevelManager : MonoBehaviour
         Swamp
     }
 
+    // Message Box
+    public GameObject messageBoxPrefab = null;
+    private MessageBox messageBox = null;
 
 	// Assorted exit conditions
 	public int finishIfNPlaced = -1;
@@ -175,6 +181,19 @@ public class LevelManager : MonoBehaviour
             temp.GetComponent<SpriteRenderer>().sortingOrder = i+1;
             i ++;
         }
+        
+        // Attempt to load the MessageBox
+        GameObject mb = Instantiate(messageBoxPrefab);
+        if (mb != null)
+        {
+            messageBox = mb.GetComponent<MessageBox>();
+            messageBox.text = startMessage;
+            messageBox.buttonText = "OK!";
+            //messageBox.transform.gameObject.SetActive(true);
+            messageBox.SetVisible(true);
+        }
+        else
+            messageBox = null;
 	}
 
 	private TileType getTileType(int x, int y)
@@ -242,7 +261,13 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
+        if ((isFinished()) && (!messageBox.IsVisible()))
+        {
+            // Return to menu
 
+            Destroy(gameObject);
+            SceneManager.LoadScene("level-menu");
+        }
 	}
 
 	TileType transition(TileType current, TileType catalyst){
@@ -419,8 +444,10 @@ public class LevelManager : MonoBehaviour
 
 		if (isFinished ()) {
 			// TODO some kind of victory screen?
-			Destroy(gameObject);
-			SceneManager.LoadScene("level-menu");
+            
+            messageBox.text = victoryMessage;
+            messageBox.buttonText = "OK!";
+            messageBox.SetVisible(true);
 		}
 	}
 
