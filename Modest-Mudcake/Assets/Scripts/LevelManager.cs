@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     // The object that will hold the board sockets
     public GameObject gameBoardObject = null;
     public GameObject tileBench = null;
+    public GameObject benchGraphic = null;
     public float tileBenchLength = 8;
 
     [Range(1, 5)]
@@ -40,6 +41,8 @@ public class LevelManager : MonoBehaviour
                                     };
     private List<TileType> testTiles = new List<TileType> { TileType.Mountain, TileType.Grassland, TileType.Desert, TileType.River,
                                                             TileType.Hills, TileType.Town, TileType.Water, TileType.Swamp,
+                                                            TileType.Mountain, TileType.Grassland, TileType.Desert, TileType.River,
+                                                            TileType.Hills, TileType.Town, TileType.Water, TileType.Swamp
                                                           };
 
     public GameObject socketObject = null;
@@ -107,7 +110,7 @@ public class LevelManager : MonoBehaviour
                     currentSocket = Instantiate(socketObject, gameBoardObject.transform);
 
                     currentSocket.transform.position = gameBoardObject.transform.position +
-                        new Vector3(x - ((float)gameBoardWidth / 2.0f), y - ((float)gameBoardHeight / 2.0f), 0);
+                        new Vector3(x - ((float)gameBoardWidth / 2.0f) + 0.5f, y - ((float)gameBoardHeight / 2.0f) + 0.5f, 0);
 
 					GameObject currentTile = null;
 
@@ -133,6 +136,8 @@ public class LevelManager : MonoBehaviour
         float benchStart = -5.0f;
         float spacing = 1.0f;
 
+        benchGraphic.transform.localScale = new Vector3(tileBenchLength*2+2, 1, 1);
+
         if (_availableTiles.Count < tileBenchLength)
         {
             benchStart = ((float)_availableTiles.Count / 2.0f);
@@ -148,7 +153,7 @@ public class LevelManager : MonoBehaviour
         foreach (TileType t in _availableTiles)
         {
             GameObject temp = createTile(t, gameBoardObject);
-            temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (i*spacing), 0, 0);
+            temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (spacing/2) + (i*spacing), 0, 0);
             temp.GetComponent<SpriteRenderer>().sortingOrder = i;
             i ++;
         }
