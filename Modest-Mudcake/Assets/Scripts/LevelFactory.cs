@@ -75,4 +75,29 @@ public class LevelFactory : MonoBehaviour {
 		// Start the level created
 		startLevel(levelObject);
 	}
+
+	public void BuildLevelThree(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+//		LevelManager level = levelObject.GetComponent<LevelManager>();
+//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+//			{TileType.Water, 3}
+//		};
+//		level.gameBoardHeight = 2;
+//		level.gameBoardWidth = 2;
+//
+//		TileType[,] testLevel = {
+//			{TileType.Empty,TileType.Empty},
+//			{TileType.Empty,TileType.Empty},
+//		};
+//		List<TileType> testTiles = new List<TileType> { 
+//			TileType.Mountain, TileType.Grassland, TileType.Water,
+//		};
+//		level.LevelManagerInit(testLevel, testTiles);
+
+		// Start the level created
+		startLevel(levelObject);
+	}
+
 }

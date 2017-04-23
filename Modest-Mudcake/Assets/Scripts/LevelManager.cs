@@ -91,6 +91,9 @@ public class LevelManager : MonoBehaviour
 
 	// List of changes to the 
 	Queue<TileChange> changeQueue = new Queue<TileChange>();
+	protected const float tileChangeTime = 0.8f;
+	TileChange currentChange = null;
+	float currentChangeStart = 0;
 
 	// Assorted exit conditions
 	public int finishIfNPlaced = -1;
@@ -258,9 +261,16 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
 
-		if (changeQueue.Count > 0) {
-			var change = changeQueue.Dequeue();	
-			setTileType (change.x, change.y, change.type);
+		if (currentChange != null) {
+			setTileType (currentChange.x, currentChange.y, currentChange.type);
+
+			if (currentChangeStart + tileChangeTime < Time.time)
+				currentChange = null;
+		} 
+			
+		if (changeQueue.Count > 0 && currentChange == null) {
+			currentChange = changeQueue.Dequeue ();	
+			currentChangeStart = Time.time;
 		}
 	}
 
