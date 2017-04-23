@@ -154,10 +154,7 @@ public class LevelManager : MonoBehaviour
         if (mb != null)
         {
             messageBox = mb.GetComponent<MessageBox>();
-            messageBox.text = startMessage;
-            messageBox.buttonText = "OK!";
-            //messageBox.transform.gameObject.SetActive(true);
-            messageBox.SetVisible(true);
+			showObjective();
         }
         else
             messageBox = null;
@@ -583,7 +580,15 @@ public class LevelManager : MonoBehaviour
 
 	public void quit(){
 		Destroy (this.gameObject);
-		//SceneManager.LoadScene ("level-menu");
         gameSession.ChangeLevel("level-menu");
+	}
+
+	public void showObjective(){
+		if (messageBox != null) {
+			messageBox.text = startMessage;
+			messageBox.buttonText = "OK!";
+			//messageBox.transform.gameObject.SetActive(true);
+			messageBox.SetVisible (true);
+		}
 	}
 }

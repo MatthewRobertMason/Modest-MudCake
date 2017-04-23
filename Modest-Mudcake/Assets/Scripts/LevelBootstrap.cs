@@ -31,6 +31,9 @@ public class LevelBootstrap : MonoBehaviour {
 		button = GameObject.Find("Abandon Button").GetComponent<UnityEngine.UI.Button>();
 		button.onClick.AddListener(script.quit);
 
+		// Bind the level to the buttons in the scene 
+		button = GameObject.Find("Goal Button").GetComponent<UnityEngine.UI.Button>();
+		button.onClick.AddListener(script.showObjective);
 	}
 	
 	// Update is called once per frame
