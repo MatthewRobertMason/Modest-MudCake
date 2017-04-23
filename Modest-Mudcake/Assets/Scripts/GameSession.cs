@@ -22,6 +22,8 @@ public class GameSession : MonoBehaviour
     public float soundVolume;
     public float musicVolume;
 
+    public int musicTrack = 0;
+
 	void Start () 
     {
         if (instance == null)
@@ -53,39 +55,47 @@ public class GameSession : MonoBehaviour
 
 	public void MusicStart(){
 		while (musicMuted) {
-			musicMuted = false;
-			MusicChange ();
+			MusicChange (musicTrack);
 		}
 	}
 
 	public void MusicStop(){
-		musicMuted = true;
-		musicIndex = -1;
-		this.GetComponent<AudioSource>().Stop();
+        MusicChange(-1);
 	}
 
-    public void MusicChange()
+    public void MusicChange(int track)
     {
+        if ((track == musicTrack) && (!musicMuted))
+            return;
+
+        AudioSource audio = this.GetComponent<AudioSource>();
+
+        if ((track >= 0) && (track < music.Length))
+        {
+            musicMuted = false;
+        }
+        else
+        {
+            musicMuted = true;
+        }
+
         if (!musicMuted)
         {
-            musicIndex++;
-
-            if (musicIndex < music.Length)
+            if ((track >= 0) && (track < music.Length))
             {
-                AudioSource audio = this.GetComponent<AudioSource>();
-                audio.clip = music[musicIndex];
+                musicTrack = track;
+                musicMuted = false;
+                audio.clip = music[track];
                 audio.Play();
             }
             else
             {
-                AudioSource audio = this.GetComponent<AudioSource>();
                 musicMuted = true;
-                musicIndex = -1;
                 audio.Stop();
             }
         }
         else
-            musicMuted = false;
+            audio.Stop();
     }
 
 	public void FinishedLevel(int number){
