@@ -57,6 +57,7 @@ public class dragableTile : MonoBehaviour
 					socketContext sc = nearest.GetComponent<socketContext> ();
 					int x = sc.x;
 					int y = sc.y;
+					sc.currentTile = this.transform.gameObject;
 					level.MoveTile(x, y);
                 }
                 else
