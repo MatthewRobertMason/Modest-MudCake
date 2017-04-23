@@ -17,6 +17,8 @@ public class dragableTile : MonoBehaviour
     private Vector3 originalPosition;
     public bool held = false;
 
+    public GameObject currentSocket = null;
+
     public LevelManager.TileType tileType;
 
 	void Start () 
@@ -48,8 +50,12 @@ public class dragableTile : MonoBehaviour
 
             if (nearest != null)
             {
-                if (Vector3.Distance(this.transform.position, nearest.transform.position) < snapDistance)
+                if ((Vector3.Distance(this.transform.position, nearest.transform.position) < snapDistance) &&
+                    nearest.GetComponent<socketContext>().currentTile == null)
                 {
+                    if (currentSocket != null)
+                        currentSocket.GetComponent<socketContext>().currentTile = null;
+
                     this.transform.position = nearest.transform.position;
                     if (placeSound != null)
                         audioSource.PlayOneShot(placeSound);
@@ -59,6 +65,8 @@ public class dragableTile : MonoBehaviour
 					int y = sc.y;
 					sc.currentTile = this.transform.gameObject;
 					level.MoveTile(x, y);
+
+                    currentSocket = nearest;
                 }
                 else
                 {
@@ -79,6 +87,11 @@ public class dragableTile : MonoBehaviour
 
             this.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(x, y, Camera.main.transform.position.z * -1));
         }
+    }
+
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 
     private GameObject nearestSocket()

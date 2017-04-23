@@ -162,6 +162,7 @@ MonoBehaviour:
   dragable: 1
   snapDistance: 1
   board: {fileID: 0}
+  level: {fileID: 0}
   placeSound: {fileID: 8300000, guid: 014f1c29602635d47b25ed95f164e3a6, type: 3}
   badPlaceSound: {fileID: 8300000, guid: 05e25dfc59eb2854bbdec2ca2ef59c28, type: 3}
   held: 0
@@ -198,7 +199,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 121f90555b1f9b64f9a160ef6025addf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1444fbdea80815f47b734318d4ca0ee0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
