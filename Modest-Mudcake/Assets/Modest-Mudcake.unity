@@ -222,7 +222,7 @@ Prefab:
     - target: {fileID: 114681737372152272, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224005524753748320, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
@@ -337,7 +337,7 @@ Prefab:
     - target: {fileID: 224497488841540448, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224782333493250026, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
@@ -357,7 +357,7 @@ Prefab:
     - target: {fileID: 224782333493250026, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224509141063331584, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
@@ -377,7 +377,7 @@ Prefab:
     - target: {fileID: 224509141063331584, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1931924795318584, guid: 5f0d8a577712e824da4ea18e1b92effb, type: 2}
       propertyPath: m_Name
@@ -417,6 +417,10 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627099858805216, guid: 5f0d8a577712e824da4ea18e1b92effb, type: 2}
+      propertyPath: m_Name
+      value: Abandon Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f0d8a577712e824da4ea18e1b92effb, type: 2}

@@ -26,6 +26,11 @@ public class LevelBootstrap : MonoBehaviour {
 		// Bind the level to the buttons in the scene 
 		var button = GameObject.Find("Reset Button").GetComponent<UnityEngine.UI.Button>();
 		button.onClick.AddListener(script.reset);
+
+		// Bind the level to the buttons in the scene 
+		button = GameObject.Find("Abandon Button").GetComponent<UnityEngine.UI.Button>();
+		button.onClick.AddListener(script.quit);
+
 	}
 	
 	// Update is called once per frame

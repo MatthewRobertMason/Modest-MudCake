@@ -577,4 +577,9 @@ public class LevelManager : MonoBehaviour
 		}
 		return count;
 	}
+
+	public void quit(){
+		Destroy (this.gameObject);
+		SceneManager.LoadScene ("level-menu");
+	}
 }
