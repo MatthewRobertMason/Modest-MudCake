@@ -28,7 +28,7 @@ public class LevelFactory : MonoBehaviour {
 		level.name = NEXT_NAME;
 		DontDestroyOnLoad(level);
 		Debug.Log ("Loading game scene with level " + level.name);
-		SceneManager.LoadScene("Modest-Mudcake");
+		SceneManager.LoadScene("Modest-Mudcake"); 
 	}
 
 	public void BuildLevelOne(){

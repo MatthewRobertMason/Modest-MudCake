@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/level-menu.unity
+    guid: ac6160b9b1e2ffb47bc9de807acee8d4
+  - enabled: 1
     path: Assets/Modest-Mudcake.unity
     guid: e8bf576407c75514f9bb95519cdb3ff0
