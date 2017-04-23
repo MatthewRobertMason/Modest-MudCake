@@ -91,7 +91,7 @@ public class LevelManager : MonoBehaviour
 
         if (availableTiles != null)
             _availableTiles = availableTiles;
-
+        
         initializedLevel = true;
     }
 

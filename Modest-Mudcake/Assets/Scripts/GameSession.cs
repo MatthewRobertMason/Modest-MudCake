@@ -29,8 +29,10 @@ public class GameSession : MonoBehaviour
         if (music.Length > 0)
         {
             musicIndex = 0;
-            this.GetComponent<AudioSource>().clip = music[musicIndex];
-            this.GetComponent<AudioSource>().Play();
+            AudioSource audio = this.GetComponent<AudioSource>();
+            audio.loop = true;
+            audio.clip = music[musicIndex];
+            audio.Play();
         }
 	}
 
@@ -42,14 +44,16 @@ public class GameSession : MonoBehaviour
 
             if (musicIndex < music.Length)
             {
-                this.GetComponent<AudioSource>().clip = music[musicIndex];
-                this.GetComponent<AudioSource>().Play();
+                AudioSource audio = this.GetComponent<AudioSource>();
+                audio.clip = music[musicIndex];
+                audio.Play();
             }
             else
             {
+                AudioSource audio = this.GetComponent<AudioSource>();
                 musicMuted = true;
                 musicIndex = -1;
-                this.GetComponent<AudioSource>().Stop();
+                audio.Stop();
             }
         }
         else
