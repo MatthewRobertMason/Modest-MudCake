@@ -7,7 +7,7 @@ public class SessionProxy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
@@ -17,6 +17,10 @@ public class SessionProxy : MonoBehaviour {
 
 	public void SwitchToLevels(){
 		SceneManager.LoadScene ("level-menu");
+	}
+
+	public void SwitchToLanding(){
+		SceneManager.LoadScene ("main-menu");
 	}
 
 	public void SetSound(bool value){
