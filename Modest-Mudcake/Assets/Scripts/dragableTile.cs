@@ -68,7 +68,10 @@ public class dragableTile : MonoBehaviour
                     if (!gameSession.soundsdMuted)
                     {
                         if (placeSound != null)
+                        {
+                            audioSource.volume = gameSession.soundVolume;
                             audioSource.PlayOneShot(placeSound);
+                        }
                     }
 
 					socketContext sc = nearest.GetComponent<socketContext> ();
@@ -85,7 +88,10 @@ public class dragableTile : MonoBehaviour
                     if (!gameSession.soundsdMuted)
                     {
                         if (badPlaceSound != null)
+                        {
+                            audioSource.volume = gameSession.soundVolume;
                             audioSource.PlayOneShot(badPlaceSound);
+                        }
                     }
                 }
             }
