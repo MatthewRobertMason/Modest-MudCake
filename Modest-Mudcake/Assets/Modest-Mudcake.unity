@@ -422,6 +422,15 @@ Prefab:
       propertyPath: m_Name
       value: Abandon Button
       objectReference: {fileID: 0}
+    - target: {fileID: 1911668241727934, guid: 5f0d8a577712e824da4ea18e1b92effb, type: 2}
+      propertyPath: m_Name
+      value: Goal Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 114573751700471998, guid: 5f0d8a577712e824da4ea18e1b92effb,
+        type: 2}
+      propertyPath: m_Text
+      value: Objective
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f0d8a577712e824da4ea18e1b92effb, type: 2}
   m_IsPrefabParent: 0
