@@ -509,6 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc622c1143a8877419f41fbd1dbb1642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blankLevel: {fileID: 1090479918358282, guid: ea94685f080bbb94dbd8cdf980dc53f0, type: 2}
 --- !u!4 &229800199
 Transform:
   m_ObjectHideFlags: 0
@@ -1380,7 +1381,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Level 2
 
-    A Little Challenge'
+    All Downhill'
 --- !u!222 &790022393
 CanvasRenderer:
   m_ObjectHideFlags: 0
