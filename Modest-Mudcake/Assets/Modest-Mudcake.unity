@@ -337,7 +337,7 @@ Prefab:
     - target: {fileID: 224497488841540448, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224782333493250026, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
@@ -357,7 +357,7 @@ Prefab:
     - target: {fileID: 224782333493250026, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224509141063331584, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
@@ -377,7 +377,7 @@ Prefab:
     - target: {fileID: 224509141063331584, guid: 5f0d8a577712e824da4ea18e1b92effb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1931924795318584, guid: 5f0d8a577712e824da4ea18e1b92effb, type: 2}
       propertyPath: m_Name
@@ -471,7 +471,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1000
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -544,7 +544,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 81715215
+  randomSeed: 28802952
   InitialModule:
     serializedVersion: 3
     enabled: 1
