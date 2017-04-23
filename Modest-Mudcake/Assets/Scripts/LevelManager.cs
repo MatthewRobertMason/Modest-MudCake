@@ -244,7 +244,7 @@ public class LevelManager : MonoBehaviour
 		return TileType.Empty;
 	}
 
-	private void setTileType(int x, int y, TileType type)
+	private GameObject setTileType(int x, int y, TileType type)
 	{
         socketContext sc = officialBoard[y, x].GetComponent<socketContext>();
 		bool inDraggable = draggableTiles.Contains (sc.currentTile);
@@ -258,6 +258,8 @@ public class LevelManager : MonoBehaviour
         sc.currentTile.GetComponent<dragableTile>().currentSocket = officialBoard[y, x];
 		if (inDraggable)
 			draggableTiles.Add (sc.currentTile);
+
+        return newTile;
 	}
 
     private GameObject createTile(TileType t, GameObject board)
@@ -311,7 +313,8 @@ public class LevelManager : MonoBehaviour
         }
 
 		if (currentChange != null) {
-			setTileType (currentChange.x, currentChange.y, currentChange.type);
+			GameObject newTile = setTileType (currentChange.x, currentChange.y, currentChange.type);
+            newTile.GetComponent<ParticleSystem>().Play();
 
 			if (currentChangeStart + tileChangeTime < Time.time) {
 				currentChange = null;
