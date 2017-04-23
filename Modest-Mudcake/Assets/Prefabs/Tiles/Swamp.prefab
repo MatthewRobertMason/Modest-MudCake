@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114770246180837274}
   - component: {fileID: 61573755972259828}
   - component: {fileID: 82774020983293022}
-  - component: {fileID: 199411569073438236}
-  - component: {fileID: 198065188975605800}
+  - component: {fileID: 199591876466930766}
+  - component: {fileID: 198792449606993356}
   m_Layer: 0
   m_Name: Swamp
   m_TagString: Untagged
@@ -170,14 +170,14 @@ MonoBehaviour:
   held: 0
   currentSocket: {fileID: 0}
   tileType: 9
---- !u!198 &198065188975605800
+--- !u!198 &198792449606993356
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1430141667477842}
   serializedVersion: 5
-  lengthInSec: 0.5
+  lengthInSec: 0.25
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -225,7 +225,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 442026639
+  randomSeed: -1466215313
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -258,7 +258,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSpeed:
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -787,13 +787,8 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 1
-    m_Bursts:
-    - time: 0
-      minCount: 300
-      maxCount: 300
-      cycleCount: 1
-      repeatInterval: 0.01
+    m_BurstCount: 0
+    m_Bursts: []
   SizeModule:
     enabled: 0
     curve:
@@ -3131,7 +3126,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
---- !u!199 &199411569073438236
+--- !u!199 &199591876466930766
 ParticleSystemRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 1

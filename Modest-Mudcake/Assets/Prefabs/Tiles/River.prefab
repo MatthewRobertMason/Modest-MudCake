@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114905233978402830}
   - component: {fileID: 61895492291343488}
   - component: {fileID: 82750461576379568}
-  - component: {fileID: 199480301393536488}
-  - component: {fileID: 198733888549465382}
+  - component: {fileID: 199904842151467246}
+  - component: {fileID: 198635338514955688}
   m_Layer: 0
   m_Name: River
   m_TagString: Untagged
@@ -170,14 +170,14 @@ MonoBehaviour:
   held: 0
   currentSocket: {fileID: 0}
   tileType: 5
---- !u!198 &198733888549465382
+--- !u!198 &198635338514955688
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1283661253304926}
   serializedVersion: 5
-  lengthInSec: 0.5
+  lengthInSec: 0.25
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -225,7 +225,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 442026639
+  randomSeed: -1466215313
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -258,7 +258,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSpeed:
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -787,13 +787,8 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 1
-    m_Bursts:
-    - time: 0
-      minCount: 300
-      maxCount: 300
-      cycleCount: 1
-      repeatInterval: 0.01
+    m_BurstCount: 0
+    m_Bursts: []
   SizeModule:
     enabled: 0
     curve:
@@ -3131,7 +3126,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
---- !u!199 &199480301393536488
+--- !u!199 &199904842151467246
 ParticleSystemRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 1
