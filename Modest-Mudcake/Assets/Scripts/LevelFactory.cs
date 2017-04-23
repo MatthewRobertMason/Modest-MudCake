@@ -55,6 +55,33 @@ public class LevelFactory : MonoBehaviour {
 		startLevel(levelObject);
 	}
 
+//	public void BuildLevel1_5(){
+//		// Build Level
+//		GameObject levelObject = Instantiate(blankLevel);
+//
+//		LevelManager level = levelObject.GetComponent<LevelManager>();
+//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+//			{TileType.Water, 3}
+//		};
+//		level.gameBoardHeight = 3;
+//		level.gameBoardWidth = 3;
+//
+//		level.startMessage = "For this simple world we want all water";
+//		level.victoryMessage = "Good job!";
+//
+//		TileType[,] testLevel = {
+//			{TileType.Empty,TileType.Empty},
+//			{TileType.Empty,TileType.Empty},
+//		};
+//		List<TileType> testTiles = new List<TileType> { 
+//			TileType.Mountain, TileType.Grassland, TileType.Water,
+//		};
+//		level.LevelManagerInit(testLevel, testTiles);
+//
+//		// Start the level created
+//		startLevel(levelObject);
+//	}
+
 	public void BuildLevelTwo(){
 		// Build Level
 		GameObject levelObject = Instantiate(blankLevel);
@@ -75,6 +102,33 @@ public class LevelFactory : MonoBehaviour {
 		};
 		List<TileType> testTiles = new List<TileType> { 
 			TileType.Mountain, TileType.Grassland, TileType.Water,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelThree(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Swamp, 3}
+		};
+		level.gameBoardHeight = 2;
+		level.gameBoardWidth = 3;
+
+		level.startMessage = "Make a big swamp.";
+		level.victoryMessage = "Good job!";
+
+		TileType[,] testLevel = {
+			{TileType.Empty,TileType.Empty, TileType.Empty},
+			{TileType.Empty,TileType.Empty, TileType.Empty},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.River,TileType.River, TileType.Grassland, TileType.Swamp,
 		};
 		level.LevelManagerInit(testLevel, testTiles);
 
