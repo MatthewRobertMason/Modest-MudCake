@@ -372,7 +372,7 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardWidth = 3;
 		level.levelNumber = 12;
 
-		level.startMessage = "This world is the wrong shade of purple. It needs some swamps.";
+		level.startMessage = "This world isn't purple. It needs some swamps.";
 		level.victoryMessage = "Good Work.";
 
 		TileType[,] testLevel = {
