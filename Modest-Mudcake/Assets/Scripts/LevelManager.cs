@@ -102,7 +102,7 @@ public class LevelManager : MonoBehaviour
 
 	// List of changes to the 
 	Queue<TileChange> changeQueue = new Queue<TileChange>();
-	protected const float tileChangeTime = 5.5f;
+	protected const float tileChangeTime = 0.5f;
 	TileChange currentChange = null;
 	float currentChangeStart = 0;
 	HashSet<GameObject> draggableTiles = new HashSet<GameObject>();
