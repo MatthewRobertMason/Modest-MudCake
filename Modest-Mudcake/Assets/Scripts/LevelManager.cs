@@ -32,9 +32,9 @@ public class LevelManager : MonoBehaviour
 	public float tileBenchLength = 8;
 	public int levelNumber = -1;
 
-    [Range(1, 5)]
+    [Range(1, 4)]
     public int gameBoardWidth = 4;
-    [Range(1, 5)]
+    [Range(1, 4)]
     public int gameBoardHeight = 4;
 
     // Holds the actual socket objects
@@ -184,7 +184,7 @@ public class LevelManager : MonoBehaviour
 					currentSocket = Instantiate(socketObject, gameBoardObject.transform);
 
 					currentSocket.transform.position = gameBoardObject.transform.position +
-						new Vector3(x - ((float)gameBoardWidth / 2.0f) + 0.5f, y - ((float)gameBoardHeight / 2.0f) + 0.5f, 0);
+                        new Vector3(1.125f * (x - ((float)gameBoardWidth / 2.0f) + 0.5f), (1.125f * y - ((float)gameBoardHeight / 2.0f) + 0.5f), 0);
 
 					GameObject currentTile = null;
 
