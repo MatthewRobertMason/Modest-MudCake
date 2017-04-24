@@ -350,8 +350,8 @@ public class LevelManager : MonoBehaviour
 				rect.anchorMin = new Vector2 (0.5f, 0);
 				rect.anchorMax = new Vector2 (0.5f, 0);
 				float height = rect.rect.height;
-				rect.offsetMin = new Vector2 (rect.offsetMin.x, height * 0.1f);
-				rect.offsetMax = new Vector2 (rect.offsetMax.x, height * 1.1f);
+				rect.offsetMin = new Vector2 (rect.offsetMin.x, height * 0.3f);
+				rect.offsetMax = new Vector2 (rect.offsetMax.x, height * 1.3f);
 			}
 
 			// The map is completed, keep checking if the player has closed the message box
