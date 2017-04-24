@@ -366,17 +366,19 @@ public class LevelFactory : MonoBehaviour {
 
 		LevelManager level = levelObject.GetComponent<LevelManager>();
 		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
-			{TileType.Swamp, 1}
+			{TileType.Swamp, 5}
 		};
 		level.gameBoardHeight = 3;
-		level.gameBoardWidth = 1;
+		level.gameBoardWidth = 3;
 		level.levelNumber = 12;
 
-		level.startMessage = "This world is the wrong shade of purple. It needs a swamp.";
+		level.startMessage = "This world is the wrong shade of purple. It needs some swamps.";
 		level.victoryMessage = "Good Work.";
 
 		TileType[,] testLevel = {
+			{TileType.Grassland, TileType.Grassland, TileType.Grassland},
 			{TileType.Empty, TileType.Grassland, TileType.Empty},
+			{TileType.Grassland, TileType.Grassland, TileType.Grassland},
 		};
 		List<TileType> testTiles = new List<TileType> { 
 			TileType.Hills, TileType.River,
