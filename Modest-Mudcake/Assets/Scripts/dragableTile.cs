@@ -21,6 +21,8 @@ public class dragableTile : MonoBehaviour
 
     public GameObject currentSocket = null;
 
+    public GameObject lockedOverlay = null;
+
     public LevelManager.TileType tileType;
 
 	void Start () 
@@ -152,6 +154,14 @@ public class dragableTile : MonoBehaviour
         }
 
         return nearest.gameObject;
+    }
+
+    public void setLockedOverlay(bool value)
+    {
+        if (lockedOverlay != null)
+        {
+            lockedOverlay.SetActive(value);
+        }
     }
 
     public void SetPosition(Vector3 newPosition)
