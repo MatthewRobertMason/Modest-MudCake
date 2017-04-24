@@ -366,16 +366,24 @@ public class LevelManager : MonoBehaviour
 			GameObject newTile = setTileType (currentChange.x, currentChange.y, currentChange.type);
             newTile.GetComponent<ParticleSystem>().Play();
 
-			if (currentChangeStart + tileChangeTime < Time.time) {
+			// Let the last transition go a little faster
+			float changeTime = tileChangeTime;
+			if (changeQueue.Count == 0)
+				changeTime *= 0.6f;
+
+			// If the effects are done clear the pointer
+			if (currentChangeStart + changeTime < Time.time) {
 				currentChange = null;
-				enableDragging ();
 			}
 		} 
 			
 		if (changeQueue.Count > 0 && currentChange == null) {
 			currentChange = changeQueue.Dequeue ();	
 			currentChangeStart = Time.time;
-			disableDragging();
+		}
+
+		if (changeQueue.Count == 0 && currentChange == null) {
+			enableDragging ();
 		}
 	}
 
