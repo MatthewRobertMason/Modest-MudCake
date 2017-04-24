@@ -5,23 +5,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SessionProxy : MonoBehaviour {
-    public GameSession gameSession = null;
+    private GameSession gameSession = null;
 
-    public GameObject musicSlider = null;
-    public GameObject soundSlider = null;
+    //public GameObject musicSlider = null;
+    //public GameObject soundSlider = null;
+
+    public GameObject musicControl = null;
+    public GameObject soundControl = null;
 
 	// Use this for initialization
 	void Start () {
         gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
 
-        if (musicSlider != null)
+        if (musicControl != null)
         {
-            musicSlider.GetComponent<Slider>().value = gameSession.musicVolume;
+            musicControl.GetComponentInChildren<Toggle>().isOn = !gameSession.musicMuted;
+            musicControl.GetComponentInChildren<Slider>().value = gameSession.musicVolume;
+            
         }
 
-        if (soundSlider != null)
+        if (soundControl != null)
         {
-            soundSlider.GetComponent<Slider>().value = gameSession.soundVolume;
+            soundControl.GetComponentInChildren<Toggle>().isOn = !gameSession.soundsMuted;
+            soundControl.GetComponentInChildren<Slider>().value = gameSession.soundVolume;
         }
 	}
 	

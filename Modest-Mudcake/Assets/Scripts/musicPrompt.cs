@@ -10,7 +10,10 @@ public class musicPrompt : MonoBehaviour {
 	void Start () {
         gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
 
-        gameSession.MusicChange(musicTrack);
+        if (!gameSession.musicMuted)
+        {
+            gameSession.MusicChange(musicTrack);
+        }
         Destroy(this.gameObject);
 	}
 }

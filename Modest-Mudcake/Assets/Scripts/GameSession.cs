@@ -14,7 +14,7 @@ public class GameSession : MonoBehaviour
 
     public AudioClip[] music;
     private int musicIndex;
-    private bool musicMuted = false;
+    public bool musicMuted = false;
     public bool soundsMuted = false;
 
     public GameObject Background = null;
@@ -54,9 +54,7 @@ public class GameSession : MonoBehaviour
 	}
 
 	public void MusicStart(){
-		while (musicMuted) {
-			MusicChange (musicTrack);
-		}
+		MusicChange (musicTrack);
 	}
 
 	public void MusicStop(){
