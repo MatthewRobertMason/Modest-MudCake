@@ -359,14 +359,14 @@ public class LevelFactory : MonoBehaviour {
 
 		LevelManager level = levelObject.GetComponent<LevelManager>();
 		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
-			{TileType.Mountain, 6}
+			{TileType.Water, 6}
 		};
 		level.gameBoardHeight = 3;
 		level.gameBoardWidth = 3;
 		level.levelNumber = 12;
 		
-		level.startMessage = "";
-		level.victoryMessage = "";
+		level.startMessage = "We want an ocean world.\n\nBe careful, you have lots of tiles you don't need.";
+		level.victoryMessage = "Great work!";
 
 		TileType[,] testLevel = {
 			{TileType.Hills, TileType.Empty, TileType.Swamp},
