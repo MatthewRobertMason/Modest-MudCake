@@ -48,11 +48,11 @@ public class SessionProxy : MonoBehaviour {
 	}
 
 	public void StartSound(){
-        gameSession.soundsdMuted = false;
+        gameSession.soundsMuted = false;
 	}
 
 	public void StopSound(){
-        gameSession.soundsdMuted = true;
+        gameSession.soundsMuted = true;
 	}
 
 	public void SetMusic(bool value){

@@ -102,7 +102,7 @@ public class LevelManager : MonoBehaviour
 
 	// List of changes to the 
 	Queue<TileChange> changeQueue = new Queue<TileChange>();
-	protected const float tileChangeTime = 0.5f;
+	protected const float tileChangeTime = 5.5f;
 	TileChange currentChange = null;
 	float currentChangeStart = 0;
 	HashSet<GameObject> draggableTiles = new HashSet<GameObject>();
@@ -198,7 +198,8 @@ public class LevelManager : MonoBehaviour
 					if (currentTile != null)
 					{
 						currentTile.GetComponent<dragableTile>().dragable = false;
-						currentTile.transform.position = currentSocket.transform.position;
+						//currentTile.transform.position = currentSocket.transform.position;
+                        currentTile.GetComponent<dragableTile>().SetPosition(currentSocket.transform.position);
 						currentSocket.GetComponent<socketContext>().currentTile = currentTile;
 					}
 				}
@@ -228,7 +229,8 @@ public class LevelManager : MonoBehaviour
 		foreach (TileType t in _availableTiles)
 		{
 			GameObject temp = createTile(t, gameBoardObject);
-			temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (spacing/2) + (i*spacing), 0, i * (-0.01f));
+			//temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (spacing/2) + (i*spacing), 0, i * (-0.01f));
+            temp.GetComponent<dragableTile>().SetPosition(tileBench.transform.position + new Vector3(-benchStart + (spacing / 2) + (i * spacing), 0, i * (-0.01f)));
 			temp.GetComponent<SpriteRenderer>().sortingOrder = i+1;
 			i ++;
 		}
@@ -256,7 +258,8 @@ public class LevelManager : MonoBehaviour
 		sc.currentTile.GetComponent<dragableTile>().Destroy();
 
         GameObject newTile = createTile(type, gameBoardObject);
-        newTile.transform.position = officialBoard[y, x].transform.position;
+        //newTile.transform.position = officialBoard[y, x].transform.position;
+        newTile.GetComponent<dragableTile>().SetPosition(officialBoard[y, x].transform.position);
         sc.currentTile = newTile;
         sc.currentTile.GetComponent<dragableTile>().currentSocket = officialBoard[y, x];
 		if (inDraggable)

@@ -15,7 +15,7 @@ public class GameSession : MonoBehaviour
     public AudioClip[] music;
     private int musicIndex;
     private bool musicMuted = false;
-    public bool soundsdMuted = false;
+    public bool soundsMuted = false;
 
     public GameObject Background = null;
 
