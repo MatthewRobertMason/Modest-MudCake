@@ -619,6 +619,10 @@ public class LevelManager : MonoBehaviour
 				changeQueue.Enqueue (new TileChange (current.Key, current.Value, type));
 			}
 		}
+
+		if (changeQueue.Count > 0) {
+			disableDragging();
+		}
 	}
 
 	bool isFinished(){
