@@ -6,7 +6,7 @@ public class ButtonMark : MonoBehaviour {
 
 	public int levelNumber = -1;
 //	public int unlockLevel = 0;
-	public static int totalLevels = 10;
+	public static int totalLevels = 13;
 
 	public GameObject doneMark = null;
 	protected const string keyFormat = "level-finished-{0}";
@@ -19,12 +19,14 @@ public class ButtonMark : MonoBehaviour {
 		if (levelNumber < 0)
 			Debug.LogError ("A Level number hasn't been set for one of the button mark scripts");
 
+		var button = gameObject.GetComponent<UnityEngine.UI.Button>();
+
 		if (IsFinished(levelNumber)) {
 			Instantiate (doneMark, gameObject.transform);
 		} 
 
 		if (unlockLevel > CountFinished ()) {
-			gameObject.GetComponent<UnityEngine.UI.Button>().interactable = false;
+			button.interactable = false;
 		}
 	}
 
