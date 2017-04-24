@@ -5001,7 +5001,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Level 7
 
-'
+    Less is More'
 --- !u!222 &1885760931
 CanvasRenderer:
   m_ObjectHideFlags: 0
