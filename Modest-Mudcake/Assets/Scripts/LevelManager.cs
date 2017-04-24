@@ -267,6 +267,7 @@ public class LevelManager : MonoBehaviour
 	{
         socketContext sc = officialBoard[y, x].GetComponent<socketContext>();
 		bool inDraggable = draggableTiles.Contains (sc.currentTile);
+		bool isDraggable = sc.currentTile.GetComponent<dragableTile>().dragable;
 		if (inDraggable)
 			draggableTiles.Remove (sc.currentTile);
 		sc.currentTile.GetComponent<dragableTile>().Destroy();
@@ -274,6 +275,7 @@ public class LevelManager : MonoBehaviour
         GameObject newTile = createTile(type, gameBoardObject);
         //newTile.transform.position = officialBoard[y, x].transform.position;
         newTile.GetComponent<dragableTile>().SetPosition(officialBoard[y, x].transform.position);
+		newTile.GetComponent<dragableTile>().dragable = isDraggable;
         sc.currentTile = newTile;
         sc.currentTile.GetComponent<dragableTile>().currentSocket = officialBoard[y, x];
 		if (inDraggable)
