@@ -228,7 +228,7 @@ public class LevelManager : MonoBehaviour
 		foreach (TileType t in _availableTiles)
 		{
 			GameObject temp = createTile(t, gameBoardObject);
-			temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (spacing/2) + (i*spacing), 0, 0);
+			temp.transform.position = tileBench.transform.position + new Vector3(-benchStart + (spacing/2) + (i*spacing), 0, i * (-0.01f));
 			temp.GetComponent<SpriteRenderer>().sortingOrder = i+1;
 			i ++;
 		}
