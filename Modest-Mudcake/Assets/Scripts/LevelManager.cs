@@ -210,6 +210,7 @@ public class LevelManager : MonoBehaviour
 					if (currentTile != null)
 					{
 						currentTile.GetComponent<dragableTile>().dragable = false;
+						currentTile.GetComponent<dragableTile>().setLockedOverlay (true);
 						//currentTile.transform.position = currentSocket.transform.position;
                         currentTile.GetComponent<dragableTile>().SetPosition(currentSocket.transform.position);
 						currentSocket.GetComponent<socketContext>().currentTile = currentTile;
@@ -276,6 +277,8 @@ public class LevelManager : MonoBehaviour
         //newTile.transform.position = officialBoard[y, x].transform.position;
         newTile.GetComponent<dragableTile>().SetPosition(officialBoard[y, x].transform.position);
 		newTile.GetComponent<dragableTile>().dragable = isDraggable;
+		if(!isDraggable && !inDraggable)
+			newTile.GetComponent<dragableTile>().setLockedOverlay(true);
         sc.currentTile = newTile;
         sc.currentTile.GetComponent<dragableTile>().currentSocket = officialBoard[y, x];
 		if (inDraggable)
