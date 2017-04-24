@@ -23,6 +23,7 @@ public class MessageBox : MonoBehaviour
 					
 		TextBox.GetComponent<Text>().font = font;
 		ButtonTextBox.GetComponent<Text>().font = buttonFont;
+		ButtonTextBox.GetComponent<Text>().fontSize = 15;
 	}
 
     public void SetText()
