@@ -305,7 +305,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 4;
 		level.gameBoardWidth = 3;
-		level.levelNumber = 9;
+		level.levelNumber = 10;
 
 		level.startMessage = "Two towns should be enough.";
 		level.victoryMessage = "Good job!";
@@ -334,7 +334,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 10;
+		level.levelNumber = 11;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
@@ -363,7 +363,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 3;
 		level.gameBoardWidth = 3;
-		level.levelNumber = 11;
+		level.levelNumber = 12;
 		
 		level.startMessage = "";
 		level.victoryMessage = "";
@@ -392,7 +392,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 12;
+		level.levelNumber = 13;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
@@ -421,7 +421,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 13;
+		level.levelNumber = 14;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
@@ -450,7 +450,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 14;
+		level.levelNumber = 15;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
