@@ -168,6 +168,7 @@ MonoBehaviour:
   level: {fileID: 0}
   placeSound: {fileID: 8300000, guid: 2336bf28f80144d4ca7d788074c6c0aa, type: 3}
   badPlaceSound: {fileID: 8300000, guid: 7f421531c2b8dc54ab592b9be6f30c2d, type: 3}
+  invalidSound: {fileID: 8300000, guid: 81a0c3d412029834eb37949ac25a092b, type: 3}
   held: 0
   currentSocket: {fileID: 0}
   tileType: 6
