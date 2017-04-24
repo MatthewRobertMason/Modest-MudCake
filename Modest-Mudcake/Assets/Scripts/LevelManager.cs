@@ -334,7 +334,7 @@ public class LevelManager : MonoBehaviour
     {
 		// Check if the map is finished, only enter this this once, when
 		// we first discover it is done
-		if (changeQueue.Count == 0) {
+		if (changeQueue.Count == 0 && currentChange == null) {
 			if (isFinished () && !hasCompletedLevel) {
 				gameSession.FinishedLevel (levelNumber);
 				hasCompletedLevel = true;
