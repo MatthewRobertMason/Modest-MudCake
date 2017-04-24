@@ -14,6 +14,7 @@ public class dragableTile : MonoBehaviour
     private AudioSource audioSource = null;
     public AudioClip placeSound = null;
     public AudioClip badPlaceSound = null;
+    public AudioClip invalidSound = null;
 
     private Vector3 originalPosition;
     public bool held = false;
@@ -104,10 +105,10 @@ public class dragableTile : MonoBehaviour
             this.transform.position = originalPosition;
             if (!gameSession.soundsMuted)
             {
-                if (badPlaceSound != null)
+                if (invalidSound != null)
                 {
                     audioSource.volume = gameSession.soundVolume;
-                    audioSource.PlayOneShot(badPlaceSound);
+                    audioSource.PlayOneShot(invalidSound);
                 }
             }
         }
