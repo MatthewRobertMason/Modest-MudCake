@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class ButtonMark : MonoBehaviour {
 
-	public int levelNumber = -1;
-//	public int unlockLevel = 0;
-	public static int totalLevels = 13;
+	protected int levelNumber = -1;
+	public static int totalLevels = 0;
 
 	public GameObject doneMark = null;
 	protected const string keyFormat = "level-finished-{0}";
+
+	void Awake(){
+		levelNumber = transform.GetSiblingIndex() + 1;
+		totalLevels = Mathf.Max(totalLevels, levelNumber + 1);
+	}
 
 	// Use this for initialization
 	void Start () {
 //		PlayerPrefs.DeleteAll ();
 		int unlockLevel = Mathf.Max(0, levelNumber - 3);
 
-		if (levelNumber < 0)
-			Debug.LogError ("A Level number hasn't been set for one of the button mark scripts");
-
 		var button = gameObject.GetComponent<UnityEngine.UI.Button>();
+		Debug.Log ("Level " + levelNumber + " " + button.onClick.GetPersistentMethodName (0) + (IsFinished(levelNumber) ? " Finished" : ""));
 
 		if (IsFinished(levelNumber)) {
 			Instantiate (doneMark, gameObject.transform);
@@ -44,6 +46,7 @@ public class ButtonMark : MonoBehaviour {
 
 	public static void FinishedLevel(int number){
 		if (number >= 0) {
+			Debug.Log ("Finished Level " + number);
 			PlayerPrefs.SetInt (string.Format (keyFormat, number), 1);
 			PlayerPrefs.Save ();
 		}

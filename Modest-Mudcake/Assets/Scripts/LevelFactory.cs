@@ -45,7 +45,8 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardWidth = 2;
 		level.levelNumber = 1;
 
-        level.startMessage = "For this simple world, just drag any tiles from the bottom into the two spaces.";
+        level.startMessage = "For this simple world, just drag any tiles from the " +
+        	"bottom into the two spaces.";
         level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -72,7 +73,8 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardWidth = 3;
 		level.levelNumber = 2;
 
-		level.startMessage = "If you place a mountain beside grassland a river will down from it.\n\nEffects only occur when a tile is placed; and only on other tiles.";
+		level.startMessage = "If you place a mountain beside grassland a river will run down from it.\n\n" +
+			"Effects only occur when a tile is placed; and only on other tiles.";
 		level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -97,9 +99,10 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 2;
 		level.gameBoardWidth = 2;
-		level.levelNumber = 2;
+		level.levelNumber = 3;
 
-		level.startMessage = "For this simple world we want all water.\n\nPlacing water next to many things will bring them closer to water.";
+		level.startMessage = "For this simple world we want all water.\n\n" +
+			"Placing water next to many things will bring them closer to water.";
 		level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -125,9 +128,11 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 2;
 		level.gameBoardWidth = 2;
-		level.levelNumber = 2;
+		level.levelNumber = 4;
 
-		level.startMessage = "For this simple world we want all water.\n\nEach tile reacts differently to others; if at all.";
+		level.startMessage = "For this simple world we want all water.\n\n" +
+			"Each tile reacts differently to others; if at all.\n\n" +
+			"Remember there is a reset button if you get stuck.";
         level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -153,9 +158,10 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 2;
 		level.gameBoardWidth = 3;
-		level.levelNumber = 3;
+		level.levelNumber = 5;
 
-		level.startMessage = "Make a big swamp.";
+		level.startMessage = "Make a big swamp.\n\n" +
+			"You can do it!";
 		level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -164,6 +170,64 @@ public class LevelFactory : MonoBehaviour {
 		};
 		List<TileType> testTiles = new List<TileType> { 
 			TileType.River,TileType.River, TileType.Grassland, TileType.Swamp,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelFourA(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Mountain, 3}
+		};
+		level.gameBoardHeight = 2;
+		level.gameBoardWidth = 2;
+		level.levelNumber = 6;
+
+		level.startMessage = "You need three mountains on this world.\n\n" +
+			"Both hills and deserts can be raised into mountains if you already have one.";
+		level.victoryMessage = "Good job!";
+
+		TileType[,] testLevel = {
+			{TileType.Empty,TileType.Desert},
+			{TileType.Hills,TileType.Empty},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Mountain,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelFourB(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Desert, 4}
+		};
+		level.gameBoardHeight = 3;
+		level.gameBoardWidth = 2;
+		level.levelNumber = 7;
+
+		level.startMessage = "Your goal all deserts.\n\n" +
+			"Swamps and seas can be dried up into deserts eventually.";
+		level.victoryMessage = "Good job!";
+
+		TileType[,] testLevel = {
+			{TileType.Empty, TileType.Empty, TileType.Empty},
+			{TileType.Empty, TileType.Empty, TileType.Empty},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Swamp, TileType.Desert, TileType.Water,
 		};
 		level.LevelManagerInit(testLevel, testTiles);
 
@@ -181,9 +245,9 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 3;
 		level.gameBoardWidth = 3;
-		level.levelNumber = 4;
+		level.levelNumber = 8;
 
-		level.startMessage = "Mountains for miles.";
+		level.startMessage = "Fill this world with mountains.";
 		level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -210,7 +274,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 4;
 		level.gameBoardWidth = 3;
-		level.levelNumber = 5;
+		level.levelNumber = 9;
 
 		level.startMessage = "Two towns should be enough.";
 		level.victoryMessage = "Good job!";
@@ -239,7 +303,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 6;
+		level.levelNumber = 10;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
@@ -268,7 +332,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 3;
 		level.gameBoardWidth = 3;
-		level.levelNumber = 7;
+		level.levelNumber = 11;
 		
 		level.startMessage = "";
 		level.victoryMessage = "";
@@ -297,7 +361,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 8;
+		level.levelNumber = 12;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
@@ -326,7 +390,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 9;
+		level.levelNumber = 13;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
@@ -355,7 +419,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 10;
+		level.levelNumber = 14;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
