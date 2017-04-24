@@ -593,7 +593,7 @@ public class LevelManager : MonoBehaviour
 			// Get the next tile to process
 			Pair current = front.Dequeue();
 			TileType currentType = getTileType(current.Key, current.Value);
-			if (currentType == TileType.Null)
+			if (currentType == TileType.Null || updated.ContainsKey(current))
 				continue;
 
 			// Check if any of the changed tiles are adjacent to this one have changed

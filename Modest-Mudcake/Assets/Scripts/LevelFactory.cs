@@ -160,7 +160,7 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardWidth = 3;
 		level.levelNumber = 5;
 
-		level.startMessage = "Make a big swamp.\n\n" +
+		level.startMessage = "Make a big swamp. (Three tiles)\n\n" +
 			"You can do it!";
 		level.victoryMessage = "Good job!";
 
@@ -247,7 +247,8 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardWidth = 3;
 		level.levelNumber = 8;
 
-		level.startMessage = "Fill this world with mountains.";
+		level.startMessage = "Fill this world with mountains.\n\n" +
+			"Go back and look at the last two levels if you get stuck.";
 		level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -324,7 +325,103 @@ public class LevelFactory : MonoBehaviour {
 		startLevel(levelObject);
 	}
 
-	public void BuildLevelSix(){
+	public void BuildLevelNine(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Mountain, 2},
+			{TileType.Water, 2},
+			{TileType.Town, 1},
+			{TileType.Swamp, 1},
+			{TileType.River, 1},
+			{TileType.Grassland, 1}
+		};
+		level.gameBoardHeight = 2;
+		level.gameBoardWidth = 4;
+		level.levelNumber = 11;
+
+		level.startMessage = "Try and get down the tiles so you have the same " +
+			"number of everything you started with.";
+		level.victoryMessage = "Effective filing!";
+
+		TileType[,] testLevel = {
+			{TileType.Mountain,TileType.Empty, TileType.Empty, TileType.Water},
+			{TileType.Mountain,TileType.Empty, TileType.Empty, TileType.Water},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Town,TileType.Swamp, TileType.River, TileType.Grassland,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+		//
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelSixA(){
+		// Show that we can make swamps from rivers, rivers from hills and grassland
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Swamp, 5}
+		};
+		level.gameBoardHeight = 3;
+		level.gameBoardWidth = 3;
+		level.levelNumber = 12;
+
+		level.startMessage = "This world is the wrong shade of purple. It needs some swamps.";
+		level.victoryMessage = "Good Work.";
+
+		TileType[,] testLevel = {
+			{TileType.Grassland, TileType.Grassland, TileType.Grassland},
+			{TileType.Empty, TileType.Grassland, TileType.Empty},
+			{TileType.Grassland, TileType.Grassland, TileType.Grassland},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Hills, TileType.River,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelSixB(){
+		// Building swamps by overrunnning towns
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
+
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Swamp, 12}
+		};
+		level.gameBoardHeight = 4;
+		level.gameBoardWidth = 4;
+		level.levelNumber = 13;
+
+		level.startMessage = "See if you can get some people to help you " +
+			"turn all of this into a swamp.";
+		level.victoryMessage = "Good Job.";
+
+		TileType[,] testLevel = {
+			{TileType.Null,  TileType.Grassland, TileType.Grassland, TileType.Null},
+			{TileType.Empty,  TileType.Grassland, TileType.Grassland, TileType.Empty},
+			{TileType.Empty, TileType.Grassland, TileType.Grassland, TileType.Empty},
+			{TileType.Null,  TileType.Grassland, TileType.Grassland, TileType.Null},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Grassland, TileType.Town, TileType.Town, TileType.Swamp,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+
+		// Start the level created
+		startLevel(levelObject);
+	}
+
+	public void BuildLevelSixC(){
 		// Build Level
 		GameObject levelObject = Instantiate(blankLevel);
 
@@ -334,9 +431,10 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 4;
 		level.gameBoardWidth = 4;
-		level.levelNumber = 11;
+		level.levelNumber = 14;
 		
-		level.startMessage = "Don't worry, only 5 of those tiles need to be swamps.";
+		level.startMessage = "Don't worry, only 5 of those tiles need to be swamps.\n\n" +
+			"Remember what you saw in the last two levels.";
 		level.victoryMessage = "Proper soggy.";
 
 		TileType[,] testLevel = {
@@ -364,7 +462,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 3;
 		level.gameBoardWidth = 3;
-		level.levelNumber = 12;
+		level.levelNumber = 15;
 		
 		level.startMessage = "We want an ocean world.\n\nBe careful, you have lots of tiles you don't need.";
 		level.victoryMessage = "Great work!";
@@ -393,7 +491,7 @@ public class LevelFactory : MonoBehaviour {
 		};
 		level.gameBoardHeight = 3;
 		level.gameBoardWidth = 3;
-		level.levelNumber = 13;
+		level.levelNumber = 16;
 
 		level.startMessage = "We desire a city.";
 		level.victoryMessage = "Good job!";
@@ -413,39 +511,7 @@ public class LevelFactory : MonoBehaviour {
 		startLevel(levelObject);
 	}
 
-	public void BuildLevelNine(){
-		// Build Level
-		GameObject levelObject = Instantiate(blankLevel);
 
-		LevelManager level = levelObject.GetComponent<LevelManager>();
-		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
-			{TileType.Mountain, 2},
-			{TileType.Water, 2},
-			{TileType.Town, 1},
-			{TileType.Swamp, 1},
-			{TileType.River, 1},
-			{TileType.Grassland, 1}
-		};
-		level.gameBoardHeight = 2;
-		level.gameBoardWidth = 4;
-		level.levelNumber = 14;
-
-		level.startMessage = "Try and get down the tiles so you have the same " +
-			"number of everything you started with.";
-		level.victoryMessage = "Effective filing!";
-
-		TileType[,] testLevel = {
-			{TileType.Mountain,TileType.Empty, TileType.Empty, TileType.Water},
-			{TileType.Mountain,TileType.Empty, TileType.Empty, TileType.Water},
-		};
-		List<TileType> testTiles = new List<TileType> { 
-			TileType.Town,TileType.Swamp, TileType.River, TileType.Grassland,
-		};
-		level.LevelManagerInit(testLevel, testTiles);
-		//
-		// Start the level created
-		startLevel(levelObject);
-	}
 
 	public void BuildLevelTen(){
 		// Build Level
@@ -457,7 +523,7 @@ public class LevelFactory : MonoBehaviour {
 		//		};
 		//		level.gameBoardHeight = 3;
 		//		level.gameBoardWidth = 3;
-		level.levelNumber = 15;
+		level.levelNumber = 17;
 		//
 		//		level.startMessage = "Mountains for miles.";
 		//		level.victoryMessage = "Good job!";
