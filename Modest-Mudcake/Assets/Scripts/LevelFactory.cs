@@ -329,26 +329,27 @@ public class LevelFactory : MonoBehaviour {
 		GameObject levelObject = Instantiate(blankLevel);
 
 		LevelManager level = levelObject.GetComponent<LevelManager>();
-		//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
-		//			{TileType.Mountain, 6}
-		//		};
-		//		level.gameBoardHeight = 3;
-		//		level.gameBoardWidth = 3;
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Swamp, 5}
+		};
+		level.gameBoardHeight = 4;
+		level.gameBoardWidth = 4;
 		level.levelNumber = 11;
-		//
-		//		level.startMessage = "Mountains for miles.";
-		//		level.victoryMessage = "Good job!";
-		//
-		//		TileType[,] testLevel = {
-		//			{TileType.Empty,TileType.Empty, TileType.Empty},
-		//			{TileType.Empty,TileType.Empty, TileType.Empty},
-		//			{TileType.Empty,TileType.Empty, TileType.Empty},
-		//		};
-		//		List<TileType> testTiles = new List<TileType> { 
-		//			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
-		//		};
-		//		level.LevelManagerInit(testLevel, testTiles);
-		//
+		
+		level.startMessage = "Don't worry, only 5 of those tiles need to be swamps.";
+		level.victoryMessage = "Proper soggy.";
+
+		TileType[,] testLevel = {
+			{TileType.Null,TileType.Null, TileType.Empty, TileType.Empty},
+			{TileType.Null,TileType.Empty, TileType.Null, TileType.Null},
+			{TileType.Empty,TileType.Empty, TileType.Empty, TileType.Null},
+			{TileType.Null,TileType.Empty, TileType.Null, TileType.Null},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Grassland, TileType.Grassland, TileType.Hills, TileType.Hills, TileType.Town, TileType.Town,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+
 		// Start the level created
 		startLevel(levelObject);
 	}
@@ -359,7 +360,7 @@ public class LevelFactory : MonoBehaviour {
 
 		LevelManager level = levelObject.GetComponent<LevelManager>();
 		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
-			{TileType.Water, 6}
+			{TileType.Water, 8}
 		};
 		level.gameBoardHeight = 3;
 		level.gameBoardWidth = 3;
