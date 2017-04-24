@@ -295,6 +295,8 @@ MonoBehaviour:
   gameSession: {fileID: 0}
   text: 
   buttonText: 
+  font: {fileID: 12800000, guid: dbfeac35a114ee34b8da764b54dad3ce, type: 3}
+  buttonFont: {fileID: 12800000, guid: 193eace43bf9ea44ca502d92f041c64d, type: 3}
   TextBox: {fileID: 1825814752202194}
   ButtonTextBox: {fileID: 1987389257339864}
 --- !u!114 &114878440415789500
