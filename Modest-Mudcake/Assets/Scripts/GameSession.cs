@@ -16,6 +16,7 @@ public class GameSession : MonoBehaviour
     private int musicIndex;
     public bool musicMuted = false;
     public bool soundsMuted = false;
+	protected int[] soundPosition = null;
 
     public GameObject Background = null;
 
@@ -44,6 +45,11 @@ public class GameSession : MonoBehaviour
             audio.loop = true;
             audio.clip = music[musicIndex];
             audio.Play();
+
+			soundPosition = new int[music.Length];
+			for (int ii = 0; ii < music.Length; ii++) {
+				soundPosition[ii] = 0;
+			}
         }
 
         if (background == null)
@@ -67,6 +73,8 @@ public class GameSession : MonoBehaviour
             return;
 
         AudioSource audio = this.GetComponent<AudioSource>();
+		if (audio.isPlaying)
+			soundPosition [musicTrack] = audio.timeSamples % audio.clip.samples;
 
         if ((track >= 0) && (track < music.Length))
         {
@@ -84,6 +92,7 @@ public class GameSession : MonoBehaviour
                 musicTrack = track;
                 musicMuted = false;
                 audio.clip = music[track];
+				audio.timeSamples = soundPosition[track];
                 audio.Play();
             }
             else
