@@ -23,6 +23,10 @@ public class ButtonMark : MonoBehaviour {
 		var button = gameObject.GetComponent<UnityEngine.UI.Button>();
 		Debug.Log ("Level " + levelNumber + " " + button.onClick.GetPersistentMethodName (0) + (IsFinished(levelNumber) ? " Finished" : ""));
 
+		if(button.onClick.GetPersistentMethodName(0) == "BuildLevelTest"){
+			unlockLevel = 0;
+		}
+
 		if (IsFinished(levelNumber)) {
 			Instantiate (doneMark, gameObject.transform);
 		} 
