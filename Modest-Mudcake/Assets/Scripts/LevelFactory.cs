@@ -543,7 +543,35 @@ public class LevelFactory : MonoBehaviour {
 		startLevel(levelObject);
 	}
 
+	public void BuildLevelEleven(){
+		// Build Level
+		GameObject levelObject = Instantiate(blankLevel);
 
+		LevelManager level = levelObject.GetComponent<LevelManager>();
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Mountain, 3}
+		};
+		level.gameBoardHeight = 4;
+		level.gameBoardWidth = 3;
+		level.levelNumber = 18;
+
+		level.startMessage = "";
+		level.victoryMessage = "";
+
+		TileType[,] testLevel = {
+			{TileType.Water,TileType.River,TileType.Empty},
+			{TileType.Swamp,TileType.Null,TileType.Null},
+			{TileType.Empty,TileType.Null,TileType.Empty},
+			{TileType.Null,TileType.Empty,TileType.Null},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Mountain, TileType.Swamp, TileType.Town,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
+
+		// Start the level created
+		startLevel(levelObject);
+	}
 
 
 
