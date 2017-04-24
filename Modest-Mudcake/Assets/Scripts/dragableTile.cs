@@ -44,7 +44,7 @@ public class dragableTile : MonoBehaviour
         if (dragable && !held)
         {
             held = true;
-			GetComponent<SpriteRenderer>().sortingOrder += 100;
+			GetComponent<SpriteRenderer>().sortingOrder += 10000;
             originalPosition = this.transform.position;
         }
     }
@@ -54,7 +54,7 @@ public class dragableTile : MonoBehaviour
         if (dragable && held)
         {
             held = false;
-			GetComponent<SpriteRenderer>().sortingOrder -= 100;
+			GetComponent<SpriteRenderer>().sortingOrder -= 10000;
 
             GameObject nearest = nearestSocket();
 
