@@ -334,30 +334,32 @@ public class LevelManager : MonoBehaviour
     {
 		// Check if the map is finished, only enter this this once, when
 		// we first discover it is done
-		if (isFinished () && !hasCompletedLevel) {
-			gameSession.FinishedLevel (levelNumber);
-			hasCompletedLevel = true;
+		if (changeQueue.Count == 0) {
+			if (isFinished () && !hasCompletedLevel) {
+				gameSession.FinishedLevel (levelNumber);
+				hasCompletedLevel = true;
 
-			messageBox.text = victoryMessage;
-			messageBox.buttonText = "OK!";
-			messageBox.SetVisible(true);
+				messageBox.text = victoryMessage;
+				messageBox.buttonText = "OK!";
+				messageBox.SetVisible (true);
 
-			// Shift the pannel so that it is anchored to the bottom center of
-			// the screen and raised 10% of its own height from the bottom
-			var pannel = messageBox.transform.GetChild (0).gameObject;
-			var rect = pannel.GetComponent<RectTransform>();
-			rect.anchorMin = new Vector2(0.5f, 0);
-			rect.anchorMax = new Vector2(0.5f, 0);
-			float height = rect.rect.height;
-			rect.offsetMin = new Vector2(rect.offsetMin.x, height * 0.1f);
-			rect.offsetMax = new Vector2(rect.offsetMax.x, height * 1.1f);
-		}
+				// Shift the pannel so that it is anchored to the bottom center of
+				// the screen and raised 10% of its own height from the bottom
+				var pannel = messageBox.transform.GetChild (0).gameObject;
+				var rect = pannel.GetComponent<RectTransform> ();
+				rect.anchorMin = new Vector2 (0.5f, 0);
+				rect.anchorMax = new Vector2 (0.5f, 0);
+				float height = rect.rect.height;
+				rect.offsetMin = new Vector2 (rect.offsetMin.x, height * 0.1f);
+				rect.offsetMax = new Vector2 (rect.offsetMax.x, height * 1.1f);
+			}
 
-		// The map is completed, keep checking if the player has closed the message box
-		if (hasCompletedLevel && !messageBox.IsVisible()){
-            // Return to menu
-            Destroy(gameObject);
-            gameSession.ChangeLevel("level-menu");
+			// The map is completed, keep checking if the player has closed the message box
+			if (hasCompletedLevel && !messageBox.IsVisible ()) {
+				// Return to menu
+				Destroy (gameObject);
+				gameSession.ChangeLevel ("level-menu");
+			}
 		}
 
 		if (currentChange != null) {

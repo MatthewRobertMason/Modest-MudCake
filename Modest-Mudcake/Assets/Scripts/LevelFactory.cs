@@ -418,25 +418,30 @@ public class LevelFactory : MonoBehaviour {
 		GameObject levelObject = Instantiate(blankLevel);
 
 		LevelManager level = levelObject.GetComponent<LevelManager>();
-		//		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
-		//			{TileType.Mountain, 6}
-		//		};
-		//		level.gameBoardHeight = 3;
-		//		level.gameBoardWidth = 3;
+		level.finishIfTypesPlaced = new Dictionary<TileType, int>{ 
+			{TileType.Mountain, 2},
+			{TileType.Water, 2},
+			{TileType.Town, 1},
+			{TileType.Swamp, 1},
+			{TileType.River, 1},
+			{TileType.Grassland, 1}
+		};
+		level.gameBoardHeight = 2;
+		level.gameBoardWidth = 4;
 		level.levelNumber = 14;
-		//
-		//		level.startMessage = "Mountains for miles.";
-		//		level.victoryMessage = "Good job!";
-		//
-		//		TileType[,] testLevel = {
-		//			{TileType.Empty,TileType.Empty, TileType.Empty},
-		//			{TileType.Empty,TileType.Empty, TileType.Empty},
-		//			{TileType.Empty,TileType.Empty, TileType.Empty},
-		//		};
-		//		List<TileType> testTiles = new List<TileType> { 
-		//			TileType.Mountain,TileType.Desert, TileType.Water, TileType.Water, TileType.Water, TileType.Water,
-		//		};
-		//		level.LevelManagerInit(testLevel, testTiles);
+
+		level.startMessage = "Try and get down the tiles so you have the same " +
+			"number of everything you started with.";
+		level.victoryMessage = "Effective filing!";
+
+		TileType[,] testLevel = {
+			{TileType.Mountain,TileType.Empty, TileType.Empty, TileType.Water},
+			{TileType.Mountain,TileType.Empty, TileType.Empty, TileType.Water},
+		};
+		List<TileType> testTiles = new List<TileType> { 
+			TileType.Town,TileType.Swamp, TileType.River, TileType.Grassland,
+		};
+		level.LevelManagerInit(testLevel, testTiles);
 		//
 		// Start the level created
 		startLevel(levelObject);
