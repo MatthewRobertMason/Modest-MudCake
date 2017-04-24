@@ -41,7 +41,7 @@ public class dragableTile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (dragable)
+        if (dragable && !held)
         {
             held = true;
             originalPosition = this.transform.position;
@@ -50,10 +50,10 @@ public class dragableTile : MonoBehaviour
 
     void OnMouseUp()
     {
-        held = false;
-        
-        if (dragable)
+        if (dragable && held)
         {
+            held = false;
+
             GameObject nearest = nearestSocket();
 
             if (nearest != null)
@@ -64,8 +64,9 @@ public class dragableTile : MonoBehaviour
                     if (currentSocket != null)
                         currentSocket.GetComponent<socketContext>().currentTile = null;
 
-                    this.transform.position = nearest.transform.position;
-                    if (!gameSession.soundsdMuted)
+                    this.SetPosition(nearest.transform.position);
+                    
+                    if (!gameSession.soundsMuted)
                     {
                         if (placeSound != null)
                         {
@@ -85,7 +86,7 @@ public class dragableTile : MonoBehaviour
                 else
                 {
                     this.transform.position = originalPosition;
-                    if (!gameSession.soundsdMuted)
+                    if (!gameSession.soundsMuted)
                     {
                         if (badPlaceSound != null)
                         {
@@ -96,11 +97,23 @@ public class dragableTile : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            this.transform.position = originalPosition;
+            if (!gameSession.soundsMuted)
+            {
+                if (badPlaceSound != null)
+                {
+                    audioSource.volume = gameSession.soundVolume;
+                    audioSource.PlayOneShot(badPlaceSound);
+                }
+            }
+        }
     }
 
     void OnMouseDrag()
     {
-        if (dragable)
+        if (dragable && held)
         {
             float x = Input.mousePosition.x;
             float y = Input.mousePosition.y;
@@ -136,5 +149,11 @@ public class dragableTile : MonoBehaviour
         }
 
         return nearest.gameObject;
+    }
+
+    public void SetPosition(Vector3 newPosition)
+    {
+        this.transform.position = newPosition;
+        originalPosition = newPosition;
     }
 }
