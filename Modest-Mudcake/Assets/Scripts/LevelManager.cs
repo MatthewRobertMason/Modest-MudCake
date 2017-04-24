@@ -27,7 +27,9 @@ public class LevelManager : MonoBehaviour
 
 	protected GameObject gameBoardObject = null;
 	protected GameObject tileBench = null;
-	protected GameObject benchGraphic = null;
+	protected GameObject benchGraphicMid = null;
+    protected GameObject benchGraphicLeft = null;
+    protected GameObject benchGraphicRight = null;
 
 	public float tileBenchLength = 8;
 	public int levelNumber = -1;
@@ -135,8 +137,18 @@ public class LevelManager : MonoBehaviour
 
 		gameBoardObject = Instantiate(gameBoardObjectPrefab);
 		tileBench = Instantiate(tileBenchPrefab);
-		foreach (Transform child in tileBench.transform)
-			benchGraphic = child.gameObject;
+        foreach (Transform child in tileBench.transform)
+        {
+            foreach (Transform c in child.transform)
+            {
+                if (c.name == "Mid")
+                    benchGraphicMid = c.gameObject;
+                else if (c.name == "Left")
+                    benchGraphicLeft = c.gameObject;
+                else if (c.name == "Right")
+                    benchGraphicRight = c.gameObject;
+            }
+        }
 
 		/*
          * Build the board
@@ -212,7 +224,9 @@ public class LevelManager : MonoBehaviour
 		float benchStart = -5.0f;
 		float spacing = 1.0f;
 
-		benchGraphic.transform.localScale = new Vector3(tileBenchLength*2+2, 1, 1);
+		benchGraphicMid.transform.localScale = new Vector3(tileBenchLength, 1, 1);
+        benchGraphicLeft.transform.position = new Vector3(-1 * (((tileBenchLength-1) * 2) - 0.375f) / 2, benchGraphicLeft.transform.position.y, benchGraphicLeft.transform.position.z);
+        benchGraphicRight.transform.position = new Vector3((((tileBenchLength-1) * 2) - 0.375f) / 2, benchGraphicRight.transform.position.y, benchGraphicRight.transform.position.z); ;
 
 		if (_availableTiles.Count < tileBenchLength)
 		{
@@ -221,8 +235,8 @@ public class LevelManager : MonoBehaviour
 		}
 		else if (_availableTiles.Count > 0)
 		{
-			benchStart = ((float)tileBenchLength/2.0f);
-			spacing = (float)tileBenchLength / (float)_availableTiles.Count;
+			benchStart = ((float)tileBenchLength/2.0f)-0.25f;
+            spacing = ((float)tileBenchLength / (float)_availableTiles.Count) - (0.5f / (float)_availableTiles.Count);
 		}
 
 		int i = 0;

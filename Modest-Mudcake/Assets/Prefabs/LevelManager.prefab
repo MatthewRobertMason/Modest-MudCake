@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584d188e0e677b04b946c455fd4eec77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSession: {fileID: 0}
   gameBoardObjectPrefab: {fileID: 1878634637517762, guid: 33922065ce4a55a4190fac7e9fa6fe23,
     type: 2}
   tileBenchPrefab: {fileID: 1055721871425790, guid: 94445b4567846a542964b2a093302393,
@@ -58,6 +59,7 @@ MonoBehaviour:
   controlBarPrefab: {fileID: 1782647211979584, guid: 5f0d8a577712e824da4ea18e1b92effb,
     type: 2}
   tileBenchLength: 3
+  levelNumber: -1
   gameBoardWidth: 4
   gameBoardHeight: 4
   startMessage: 
