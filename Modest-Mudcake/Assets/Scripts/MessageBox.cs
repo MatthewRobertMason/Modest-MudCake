@@ -10,6 +10,9 @@ public class MessageBox : MonoBehaviour
     public string text;
     public string buttonText;
 
+	public Font font;
+	public Font buttonFont;
+
     public GameObject TextBox;
     public GameObject ButtonTextBox;
 
@@ -17,7 +20,10 @@ public class MessageBox : MonoBehaviour
     {
         gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
         this.gameObject.GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-    }
+					
+		TextBox.GetComponent<Text>().font = font;
+		ButtonTextBox.GetComponent<Text>().font = buttonFont;
+	}
 
     public void SetText()
     {
