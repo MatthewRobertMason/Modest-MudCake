@@ -22,6 +22,7 @@ public class GameSession : MonoBehaviour
 
     public float soundVolume;
     public float musicVolume;
+    public float levelScrollPosition = 1.0f;
 
     public int musicTrack = 0;
 
@@ -124,6 +125,11 @@ public class GameSession : MonoBehaviour
         AudioSource audio = this.GetComponent<AudioSource>();
         musicVolume = value;
         audio.volume = value;
+    }
+
+    public void OnLevelScrollChanged(float value)
+    {
+        levelScrollPosition = value;
     }
 
 	void Update () 

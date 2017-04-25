@@ -101,7 +101,7 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardWidth = 2;
 		level.levelNumber = 3;
 
-		level.startMessage = "For this simple world we want all water.\n\n" +
+		level.startMessage = "For this simple world we need to erode mountains until we only have water.\n\n" +
 			"Placing water next to many things will bring them closer to water.";
 		level.victoryMessage = "Good job!";
 
@@ -131,8 +131,8 @@ public class LevelFactory : MonoBehaviour {
 		level.levelNumber = 4;
 
 		level.startMessage = "For this simple world we want all water.\n\n" +
-			"Each tile reacts differently to others; if at all.\n\n" +
-			"Remember there is a reset button if you get stuck.";
+			"Some tiles reacts differently to others; some don't react at all.\n\n" +
+			"Remember there is a reset button above if you get stuck.";
         level.victoryMessage = "Good job!";
 
 		TileType[,] testLevel = {
@@ -160,7 +160,7 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardWidth = 3;
 		level.levelNumber = 5;
 
-		level.startMessage = "Make a big swamp. (Three tiles)\n\n" +
+		level.startMessage = "Make a big swamp. (Three swamp tiles)\n\n" +
 			"You can do it!";
 		level.victoryMessage = "Good job!";
 
@@ -218,7 +218,7 @@ public class LevelFactory : MonoBehaviour {
 		level.gameBoardWidth = 2;
 		level.levelNumber = 7;
 
-		level.startMessage = "Your goal all deserts.\n\n" +
+		level.startMessage = "Your goal: all deserts.\n\n" +
 			"Swamps and seas can be dried up into deserts eventually.";
 		level.victoryMessage = "Good job!";
 
@@ -343,7 +343,7 @@ public class LevelFactory : MonoBehaviour {
 		level.levelNumber = 11;
 
 		level.startMessage = "Try and get down the tiles so you have the same " +
-			"number of everything you started with.";
+			"number of everything you started with. (no tiles change)";
 		level.victoryMessage = "Effective filing!";
 
 		TileType[,] testLevel = {
@@ -361,6 +361,7 @@ public class LevelFactory : MonoBehaviour {
 
 	public void BuildLevelTen(){
 		// Build Level
+        // Level 7
 		GameObject levelObject = Instantiate(blankLevel);
 
 		LevelManager level = levelObject.GetComponent<LevelManager>();

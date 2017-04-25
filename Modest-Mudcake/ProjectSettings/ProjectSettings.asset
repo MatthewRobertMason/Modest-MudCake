@@ -6,12 +6,12 @@ PlayerSettings:
   serializedVersion: 11
   productGUID: 77b4284a8841c3348b8dfb40eedeba5b
   AndroidProfiler: 0
-  defaultScreenOrientation: 0
+  defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Moonfolk
-  productName: Modest-Mudcake
+  productName: Bureaucratic Deity Simulator 2018
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21176471, a: 1}
@@ -226,7 +226,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 216402101afa13a4fa0c9b2c817b57d2, type: 3}
+      m_Icon: {fileID: 2800000, guid: aa981720334a866408d6fcd2a2b420cd, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []
@@ -499,7 +499,8 @@ PlayerSettings:
   webGLUseEmbeddedResources: 0
   webGLUseWasm: 0
   webGLCompressionFormat: 1
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    4: 
   platformArchitecture: {}
   scriptingBackend: {}
   incrementalIl2cppBuild: {}

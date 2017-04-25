@@ -13,6 +13,8 @@ public class SessionProxy : MonoBehaviour {
     public GameObject musicControl = null;
     public GameObject soundControl = null;
 
+    public GameObject levelScroll = null;
+
 	// Use this for initialization
 	void Start () {
         gameSession = GameObject.Find("GameSession").GetComponent<GameSession>();
@@ -28,6 +30,12 @@ public class SessionProxy : MonoBehaviour {
         {
             soundControl.GetComponentInChildren<Toggle>().isOn = !gameSession.soundsMuted;
             soundControl.GetComponentInChildren<Slider>().value = gameSession.soundVolume;
+        }
+
+        if (levelScroll != null)
+        {
+            levelScroll.GetComponent<Scrollbar>().value = gameSession.levelScrollPosition;
+            // Reset the scroll
         }
 	}
 	
@@ -84,6 +92,11 @@ public class SessionProxy : MonoBehaviour {
     public void changeSoundVolume(float value)
     {
         gameSession.OnSoundVolumeChange(value);
+    }
+
+    public void changeScrollPosition(float value)
+    {
+        gameSession.OnLevelScrollChanged(value);
     }
 
 	public void ExitGame(){
